@@ -1,10 +1,20 @@
 {
-  "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "declarationDir": "typings"
-  },
-  "files": [
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "declarationDir": "typings",
+        "outDir": "dist",
+        "lib": [
+            "es2017"
+        ],
+    },
+    /* "files": [
     "src/index.ts",
     "src/schemes.ts"
-  ]
+  ], */
+    "include": [
+        "src"
+    ],
+    "exclude": [
+        "**/*.spec.ts"
+    ]
 }
