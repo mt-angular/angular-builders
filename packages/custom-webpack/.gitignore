@@ -13,3 +13,6 @@ package
 **/schema.json
 *.js
 *.js.map
+
+# my stuff
+**/dist

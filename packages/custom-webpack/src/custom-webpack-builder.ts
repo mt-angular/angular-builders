@@ -1,9 +1,9 @@
-import { CustomWebpackBuilderConfig } from "./custom-webpack-builder-config";
-import { Configuration } from "webpack";
+import { CustomWebpackBuilderConfig } from './custom-webpack-builder-config';
+import { Configuration } from 'webpack';
 import { getSystemPath, Path, virtualFs } from '@angular-devkit/core';
 import { BrowserBuilder, NormalizedBrowserBuilderSchema, NormalizedKarmaBuilderSchema, ServerBuilder, KarmaBuilder } from '@angular-devkit/build-angular';
 import * as fs from 'fs';
-import { WebpackConfigMerger } from "./webpack-config-merger";
+import { WebpackConfigMerger } from './webpack-config-merger';
 import { CustomWebpackSchema } from './custom-webpack-schema';
 import { NormalizedServerBuilderServerSchema } from '@angular-devkit/build-angular/src/server/schema';
 
@@ -16,18 +16,20 @@ export interface NormalizedCustomWebpackServerBuildSchema extends NormalizedServ
 export type BuilderParametersOptions = NormalizedCustomWebpackBrowserBuildSchema | NormalizedCustomWebpackKarmaBuildSchema | NormalizedCustomWebpackServerBuildSchema;
 
 export interface BuilderParameters {
-    root: Path,
-    projectRoot: Path,
-    sourceRoot?: Path,
-    host: virtualFs.Host<fs.Stats>,
+    root: Path;
+    projectRoot: Path;
+    sourceRoot?: Path;
+    host: virtualFs.Host<fs.Stats>;
     options: BuilderParametersOptions;
-    browserBuilderInstance: BrowserBuilder | KarmaBuilder | ServerBuilder;
+    webpackConfiguration: Configuration;
+    // browserBuilderInstance: BrowserBuilder | KarmaBuilder | ServerBuilder;
 }
 
 export type FunctionWebpackConfiguration = (BuilderParameters: BuilderParameters) => Configuration;
 export type WebpackConfiguration = Configuration | FunctionWebpackConfiguration;
 
 export class CustomWebpackBuilder {
+
     static buildWebpackConfig(builderParameters: BuilderParameters, baseWebpackConfig: Configuration): Configuration {
 
         const { root, options } = builderParameters;

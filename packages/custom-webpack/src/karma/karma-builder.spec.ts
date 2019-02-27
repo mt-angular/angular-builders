@@ -15,7 +15,7 @@ const stylesConfig = { styles: 2 };
 const nonAotTestConfig = { nonAotTest: 3 };
 const testConfig = { test: 4 };
 
-//Mock angular configs to avoid unnecessary computations and sandbox the test
+// Mock angular configs to avoid unnecessary computations and sandbox the test
 jest.mock('@angular-devkit/build-angular/src/angular-cli-files/models/webpack-configs', () => ({
     getCommonConfig: () => commonConfig,
     getStylesConfig: () => stylesConfig,
@@ -45,14 +45,15 @@ describe('Custom webpack karma builder test', () => {
         const projectRoot = root;
         const sourceRoot = normalize('./');
         const host = {} as any;
+        const webpackConfiguration = angularConfigs;
 
-        const param = { root, projectRoot, sourceRoot, host, options };
+        const param = { root, projectRoot, sourceRoot, host, options, webpackConfiguration };
         const config = builder.buildWebpackConfig.apply(builder, Object.values(param) as any);
 
-        const builderParameters = { ...param, browserBuilderInstance: builder };
+        // const builderParameters = { ...param, browserBuilderInstance };
 
-        expect(buildWebpackConfigMock).toHaveBeenCalledWith(builderParameters, angularConfigs);
+        expect(buildWebpackConfigMock).toHaveBeenCalledWith(param, webpackConfiguration);
 
         expect(config).toEqual(mergedConfig);
-    })
+    });
 });

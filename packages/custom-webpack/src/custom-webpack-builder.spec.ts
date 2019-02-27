@@ -1,10 +1,8 @@
-import { CustomWebpackBuilder, BuilderParameters } from "./custom-webpack-builder";
-import { MergeStrategies, CustomWebpackBuilderConfig } from "./custom-webpack-builder-config";
+import { CustomWebpackBuilder, BuilderParameters } from './custom-webpack-builder';
+import { MergeStrategies, CustomWebpackBuilderConfig } from './custom-webpack-builder-config';
 jest.mock('./webpack-config-merger');
-import * as fs from 'fs';
-import { WebpackConfigMerger } from "./webpack-config-merger";
+import { WebpackConfigMerger } from './webpack-config-merger';
 import { Path } from '@angular-devkit/core';
-import { getSystemPath } from '@angular-devkit/core';
 
 
 
@@ -36,7 +34,7 @@ function builderParameters(): BuilderParameters {
         host: undefined,
         options: { customWebpackConfig: {} } as any,
         projectRoot: undefined,
-        browserBuilderInstance: undefined
+        webpackConfiguration: { entry: 'index.js' }
     };
 }
 

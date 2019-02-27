@@ -25,7 +25,7 @@
     "scripts": {
         "postbuild": "yarn copy-builders-to-dist && yarn test && yarn run e2e",
         "build": "../../node_modules/.bin/tsc && ../../node_modules/.bin/ts-node ../../merge-schemes.ts",
-        "test": "../../node_modules/.bin/jest --verbose false --config ../../jest-ut.config.js ",
+        "test": "../../node_modules/.bin/jest --verbose false --config ../../jest-ut.config.js",
         "e2e": "../../node_modules/.bin/jest --verbose false --config ../../jest-e2e.config.js",
         "copy-builders-to-dist": "cp builders.json dist",
         "copy-json-to-dist2": "cp src/browser/schema.json dist/browser && cp src/server/schema.json dist/server && cp src/karma/schema.json dist/karma && cp builders.dist.json dist/builders.json && cp package.dist.json dist/package.json"
@@ -36,5 +36,8 @@
     },
     "peerDependencies": {
         "@angular-devkit/build-angular": ">=0.12.3"
+    },
+    "devDependencies": {
+        "typescript": "^3.3.3333"
     }
 }
