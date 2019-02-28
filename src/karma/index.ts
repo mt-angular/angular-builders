@@ -1,5 +1,6 @@
 /**
  * Created by Evgeny Barabanov on 05/10/2018.
+ * Modified by Thomas Milotti on 25/12/2018
  */
 
 import { BuilderContext } from '@angular-devkit/architect';
