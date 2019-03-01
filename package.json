@@ -1,6 +1,6 @@
 {
     "name": "@mt-angular-builders/custom-webpack",
-    "version": "8.0.0",
+    "version": "8.0.1",
     "description": "Custom webpack builders for Angular build facade. Allow to modify Angular build configuration without ejecting it",
     "main": "dist/index.js",
     "repository": {
@@ -21,14 +21,20 @@
         "webpack",
         "custom"
     ],
+    "files": [
+        "dist",
+        "builders.json"
+    ],
     "scripts": {
-        "postbuild": "yarn copy-builders-to-dist && yarn test && yarn run e2e",
-        "build": "../../node_modules/.bin/tsc && ../../node_modules/.bin/ts-node ../../merge-schemes.ts",
-        "test": "../../node_modules/.bin/jest --verbose false --config ../../jest-ut.config.js",
-        "e2e": "../../node_modules/.bin/jest --verbose false --config ../../jest-e2e.config.js",
-        "copy-builders-to-dist": "cp builders.json dist"
+        "postbuild": "yarn copy-assets-for-independent-dist && yarn test && yarn run e2e",
+        "build": "rm -R dist && npx tsc && npx ts-node ../../merge-schemes.ts",
+        "test": "npx jest --verbose false --config ../../jest-ut.config.js",
+        "e2e": "npx jest --verbose false --config ../../jest-e2e.config.js",
+        "copy-assets-for-independent-dist": "yarn copy-builders-to-dist && yarn create-package-in-dist",
+        "copy-builders-to-dist": "cp builders.dist.json dist/builders.json",
+        "create-package-in-dist": "echo '{\"main\": \"index.js\", \"builders\": \"builders.json\"}' > dist/package.json"
     },
-    "builders": "dist/builders.json",
+    "builders": "builders.json",
     "dependencies": {
         "lodash": "^4.17.10"
     },
