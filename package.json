@@ -1,12 +1,8 @@
 {
-    "name": "@mt-angular-builders/custom-webpack",
+    "name": "@ud-angular-builders/custom-webpack",
     "version": "8.0.1",
     "description": "Custom webpack builders for Angular build facade. Allow to modify Angular build configuration without ejecting it",
     "main": "dist/index.js",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/meltedspark/angular-builders/packages/custom-webpack"
-    },
     "author": "Thomas Milotti",
     "license": "MIT",
     "engines": {
@@ -26,22 +22,27 @@
         "builders.json"
     ],
     "scripts": {
-        "postbuild": "yarn copy-assets-for-independent-dist && yarn test && yarn run e2e",
-        "build": "rm -R dist && npx tsc && npx ts-node ../../merge-schemes.ts",
-        "test": "npx jest --verbose false --config ../../jest-ut.config.js",
-        "e2e": "npx jest --verbose false --config ../../jest-e2e.config.js",
+        "prebuild": "rm -R dist",
+        "postbuild2": "yarn copy-builders-to-dist && yarn test && yarn e2e",
+        "postbuild": "yarn copy-assets-for-independent-dist && yarn test && yarn e2e",
+        "build": "npx tsc -p tsconfig.build.json && yarn generate-schemes",
+        "generate-schemes": "npx ts-node ../../merge-schemes.ts",
+        "test": "yarn generate-schemes && npx jest --verbose false --config ../../jest-ut.config.js",
+        "e2e": "npx jest --passWithNoTests --verbose false --config ../../jest-e2e.config.js",
         "copy-assets-for-independent-dist": "yarn copy-builders-to-dist && yarn create-package-in-dist",
         "copy-builders-to-dist": "cp builders.dist.json dist/builders.json",
-        "create-package-in-dist": "echo '{\"main\": \"index.js\", \"builders\": \"builders.json\"}' > dist/package.json"
+        "create-package-in-dist": "echo '{\"main\": \"index.js\", \"builders\": \"builders.json\"}' > dist/package.json",
+        "start": "tsc -p tsconfig.build.json --watch",
+        "start-test": "tsc -p tsconfig.test.json --watch",
+        "github-push": "yarn build && npm version patch && git push && git push --tags",
+        "npm-publish": "yarn build && npm publish --access public"
     },
     "builders": "builders.json",
     "dependencies": {
-        "lodash": "^4.17.10"
+        "karma": "^4.2.0"
     },
     "peerDependencies": {
-        "@angular-devkit/build-angular": "^0.13.3"
+        "@angular-devkit/build-angular": ">=0.802.0"
     },
-    "devDependencies": {
-        "typescript": "^3.3.3333"
-    }
+    "devDependencies": {}
 }

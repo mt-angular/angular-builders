@@ -3,33 +3,19 @@
  * Modified by Thomas Milotti on 25/12/2018
  */
 
-import { BuilderContext } from '@angular-devkit/architect';
-import { ServerBuilder } from '@angular-devkit/build-angular';
-import { Path, virtualFs } from '@angular-devkit/core';
-import * as fs from 'fs';
-// import {NormalizedServerBuilderServerSchema} from '@angular-devkit/build-angular/src/server/schema';
-import { CustomWebpackBuilder, NormalizedCustomWebpackServerBuildSchema } from '../custom-webpack-builder';
-// import {CustomWebpackSchema} from "../custom-webpack-schema";
 
-/* export interface NormalizedCustomWebpackServerBuildSchema extends NormalizedServerBuilderServerSchema, CustomWebpackSchema {
-}
- */
-export class CustomWebpackServerBuilder extends ServerBuilder {
+import { BuilderContext, BuilderOutput, createBuilder } from '@angular-devkit/architect';
+import { executeServerBuilder } from '@angular-devkit/build-angular';
+import { json } from '@angular-devkit/core';
+import { Observable } from 'rxjs';
+import { customWebpackConfigTransformFactory } from '../common';
+import { CustomWebpackServerSchema } from '../custom-webpack-schema';
 
-    constructor(public context: BuilderContext) {
-        super(context);
-    }
 
-    buildWebpackConfig(root: Path,
-        projectRoot: Path,
-        host: virtualFs.Host<fs.Stats>,
-        options: NormalizedCustomWebpackServerBuildSchema): any {
-
-        const webpackConfiguration = super.buildWebpackConfig(root, projectRoot, host, options);
-        const builderParameters = { root, projectRoot, host, options, webpackConfiguration };
-
-        return CustomWebpackBuilder.buildWebpackConfig(builderParameters, webpackConfiguration) as any;
-    }
+export function buildCustomWebpackServer(options: CustomWebpackServerSchema, context: BuilderContext): Observable<BuilderOutput> {
+    return executeServerBuilder(options, context, {
+        webpackConfiguration: customWebpackConfigTransformFactory(options, context)
+    });
 }
 
-export default CustomWebpackServerBuilder;
+export default createBuilder<json.JsonObject & CustomWebpackServerSchema>(buildCustomWebpackServer);
