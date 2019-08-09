@@ -22,34 +22,21 @@ describe("Build Jest configuration object", () => {
     );
   });
 
-  it("Should resolve projects with source root instead of root if the former exists and the latter is empty", () => {
-    const sourceRoot = normalize('/my/source/root');
-    jestConfigurationBuilder.buildConfiguration(normalize(''), sourceRoot, normalize('./'), 'jest.config.js');
-    expect(defaultConfigResolver.resolveForProject.mock.calls[0][0]).toEqual(sourceRoot);
-    expect(customConfigResolver.resolveForProject.mock.calls[0][0]).toEqual(sourceRoot);
-  });
-
-  it("Should use root even if it's empty when source root is not provided", () => {
-    jestConfigurationBuilder.buildConfiguration(normalize(''), undefined, normalize('./'), 'jest.config.js');
-    expect(defaultConfigResolver.resolveForProject.mock.calls[0][0]).toEqual('');
-    expect(customConfigResolver.resolveForProject.mock.calls[0][0]).toEqual('');
-  });
-
-  it("Should prefer root over source root if the former is not empty", () => {
-    const root = normalize('/my/root');
-    jestConfigurationBuilder.buildConfiguration(root, normalize('/my/source/root'), normalize('./'), 'jest.config.js');
-    expect(defaultConfigResolver.resolveForProject.mock.calls[0][0]).toEqual(root);
-    expect(customConfigResolver.resolveForProject.mock.calls[0][0]).toEqual(root);
+  it("Should use project root for resolving the configuration", () => {
+    const projectRoot = normalize('/my/root');
+    jestConfigurationBuilder.buildConfiguration(projectRoot, normalize('./'), 'jest.config.js');
+    expect(defaultConfigResolver.resolveForProject.mock.calls[0][0]).toEqual(projectRoot);
+    expect(customConfigResolver.resolveForProject.mock.calls[0][0]).toEqual(projectRoot);
   });
 
   it("Should use jest.config.js path if configPath is not provided", () => {
-    jestConfigurationBuilder.buildConfiguration(normalize(''), undefined, normalize('./'));
+    jestConfigurationBuilder.buildConfiguration(normalize(''), normalize('./'));
     expect(customConfigResolver.resolveForProject.mock.calls[0][1]).toEqual('jest.config.js');
   });
 
   it("Should use provided configPath when resolving custom project configuration", () => {
     const jestConfigPath = '../my-jest.config.js';
-    jestConfigurationBuilder.buildConfiguration(normalize(''), undefined, normalize('./'), jestConfigPath);
+    jestConfigurationBuilder.buildConfiguration(normalize(''), normalize('./'), jestConfigPath);
     expect(customConfigResolver.resolveForProject.mock.calls[0][1]).toEqual(jestConfigPath);
   });
 
@@ -100,5 +87,52 @@ describe("Build Jest configuration object", () => {
         notSoDefault: "blah blah"
       }
     })
+  })
+
+  it('Should concat "setupFilesAfterEnv" and "astTransformers" properties only', () => {
+    defaultConfigResolver.resolveGlobal.mockReturnValue({
+      globals: {
+        "ts-jest": {
+          astTransformers: ['astTA']
+        }
+      },
+      setupFilesAfterEnv: ['setupA'],
+    });
+    
+    defaultConfigResolver.resolveForProject.mockReturnValue({
+      testMatch: ['shouldNotBe'],
+    });
+    
+    customConfigResolver.resolveGlobal.mockReturnValue({
+      globals: {
+        "ts-jest": {
+          astTransformers: ['astTB']
+        }
+      },
+      setupFilesAfterEnv: ['setupB'],
+      testMatch: ['shouldBeOnlyThis'],
+    });
+    
+    customConfigResolver.resolveForProject.mockReturnValue({
+      setupFilesAfterEnv: ['setupC'],
+    });
+
+    const config = jestConfigurationBuilder.buildConfiguration(normalize(''), undefined, normalize('./'));
+
+    expect(config).toEqual({
+      globals: {
+        "ts-jest": {
+          astTransformers: ['astTA', 'astTB']
+        }
+      },
+      setupFilesAfterEnv: ['setupA', 'setupB', 'setupC'],
+      testMatch: ['shouldBeOnlyThis'],
+    });
+  });
+
+  it('Should call the default config resolver resolveGlobal method', () => {
+    const workspaceRoot = normalize('my/workspace/root')
+    jestConfigurationBuilder.buildConfiguration(normalize(''), workspaceRoot, normalize('./'));
+    expect(defaultConfigResolver.resolveGlobal).toHaveBeenCalledTimes(1);
   })
 });

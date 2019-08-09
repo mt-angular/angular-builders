@@ -1,4 +1,4 @@
-import {getSystemPath, join, Path} from "@angular-devkit/core";
+import {getSystemPath, join, Path, normalize} from "@angular-devkit/core";
 import defaultConfig from "./jest-config/default-config";
 
 export const testPattern = `/**/+(*.)+(spec|test).+(ts|js)?(x)`;
@@ -14,11 +14,11 @@ export class DefaultConfigResolver {
     return {
       globals: {
         'ts-jest': {
-          tsConfigFile: getSystemPath(join(projectRoot, tsConfigName))
+          tsConfig: getSystemPath(join(projectRoot, tsConfigName))
         }
       },
       testMatch: [
-        `${getSystemPath(join(projectRoot, testPattern))}`
+        `${getSystemPath(projectRoot)}${testPattern}`
       ]
     };
   }

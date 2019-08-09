@@ -1,13 +1,25 @@
 {
     "name": "@ud-angular-builders/jest",
-    "version": "7.2.1",
-    "description": "Jest builder for Angular build facade. Allows ng test run with Jest instead of Karma",
-    "author": "Thomas Milotti",
+    "version": "8.0.4",
+    "description": "Jest runner for Angular build facade. Allows ng test run with Jest instead of Karma",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/milottit/angular-builders/tree/8.0.0/packages/jest"
+    },
+    "author": {
+        "name": "Thomas Milotti",
+        "email": "thomas.milotti@gmail.com",
+        "url": "https://github.com/milottit"
+    },
     "license": "MIT",
     "engines": {
-        "node": ">=8.9.0"
+        "node": ">=10.0.0"
     },
-    "typings": "typings",
+    "main": "dist/index.js",
+    "files": [
+        "dist",
+        "builders.json"
+    ],
     "keywords": [
         "jest",
         "testing",
@@ -19,31 +31,27 @@
     ],
     "builders": "builders.json",
     "scripts": {
-        "prebuild": "rm -R dist",
-        "postbuild": "yarn test",
-        "build": "npx tsc -p tsconfig.build.json",
-        "test": "npx jest --config ../../jest-ut.config.js",
-        "e2e": "npx jest --config ../../jest-e2e.config.js",
-        "start": "tsc -p tsconfig.build.json --watch"
+        "prebuild": "yarn clean && yarn generate",
+        "build": "../../node_modules/.bin/tsc",
+        "postbuild": "yarn copy && yarn test && yarn e2e",
+        "test": "../../node_modules/.bin/jest --config ../../jest-ut.config.js",
+        "e2e": "../../node_modules/.bin/jest --config ../../jest-e2e.config.js",
+        "clean": "../../node_modules/.bin/rimraf dist src/schema.ts",
+        "copy": "../../node_modules/.bin/cpy src/schema.json dist",
+        "generate": "../../node_modules/.bin/quicktype -s schema src/schema.json -o src/schema.ts",
+        "ci": "./scripts/ci.sh",
+        "start": "tsc -p tsconfig.build.json --watch",
+        "start-test": "tsc -p tsconfig.test.json --watch"
     },
     "dependencies": {
-        "@angular/cli": "^8.2.0",
-        "@angular/core": "^8.2.0",
-        "@angular/platform-browser-dynamic": ">=2.0.0",
-        "core-js": ">=2.0.0 < 4.0.0",
         "jest-preset-angular": "^7.1.1",
-        "lodash": "^4.17.10",
-        "rxjs": "^6.4.0",
-        "zone.js": "~0.9.1"
+        "lodash": "^4.17.10"
     },
     "peerDependencies": {
-        "@angular-devkit/build-angular": ">=0.12.3",
-        "jest": ">= 23"
+        "@angular-devkit/build-angular": ">=0.801.0",
+        "jest": ">=24"
     },
     "devDependencies": {
-        "@angular/common": "8.2.0",
-        "@angular/core": "^8.2.0",
-        "@angular/platform-browser": "8.2.0",
-        "rxjs": "^6.5.2"
+        "jest": "^24.5.0"
     }
 }

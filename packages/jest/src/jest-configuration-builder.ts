@@ -1,8 +1,40 @@
-import {normalize, Path, resolve} from "@angular-devkit/core";
+import { Path, resolve } from "@angular-devkit/core";
+import { mergeWith } from 'lodash';
+import { CustomConfigResolver } from "./custom-config.resolver";
+import { DefaultConfigResolver } from "./default-config.resolver";
 
-import {merge} from 'lodash';
-import {CustomConfigResolver} from "./custom-config.resolver";
-import {DefaultConfigResolver} from "./default-config.resolver";
+/**
+ * A whitelist of property names that are meant to be concat.
+ */
+const ARRAY_PROPERTIES_TO_CONCAT = [
+  // From Jest Config
+  'setupFilesAfterEnv',
+  // From ts-jest config
+  'astTransformers'
+];
+
+/**
+ * This function checks witch properties should be concat. Early return will
+ * merge the data as lodash#merge would do it. 
+ */
+function concatArrayProperties(objValue: any[], srcValue: unknown, property: string) {
+  if (!ARRAY_PROPERTIES_TO_CONCAT.includes(property)) {
+    return;
+  }
+
+  return objValue.concat(srcValue);
+}
+
+export const buildConfiguration = (defaultConfigResolver: DefaultConfigResolver,
+  customConfigResolver: CustomConfigResolver) => 
+  (projectRoot: Path,workspaceRoot: Path, configPath: string = 'jest.config.js') => {
+    const globalDefaultConfig = defaultConfigResolver.resolveGlobal();
+    const projectDefaultConfig = defaultConfigResolver.resolveForProject(projectRoot);
+    const globalCustomConfig = customConfigResolver.resolveGlobal(workspaceRoot);
+    const projectCustomConfig = customConfigResolver.resolveForProject(projectRoot, configPath);
+    
+    return mergeWith(globalDefaultConfig, projectDefaultConfig, globalCustomConfig, projectCustomConfig, concatArrayProperties);
+}
 
 export class JestConfigurationBuilder {
 
@@ -10,16 +42,10 @@ export class JestConfigurationBuilder {
               private customConfigResolver: CustomConfigResolver) {
   }
 
-  buildConfiguration(root: Path, sourceRoot: Path | undefined, workspaceRoot: Path, configPath: string = 'jest.config.js'): any {
-    const configRoot = root === '' ? sourceRoot || normalize('') : root ;
-    const projectRoot: Path = resolve(workspaceRoot, configRoot);
+  buildConfiguration(projectRoot: Path, workspaceRoot: Path, configPath: string = 'jest.config.js'): any {
+    const pathToProject: Path = resolve(workspaceRoot, projectRoot);
 
-    const globalDefaultConfig = this.defaultConfigResolver.resolveGlobal();
-    const projectDefaultConfig = this.defaultConfigResolver.resolveForProject(projectRoot);
-    const globalCustomConfig = this.customConfigResolver.resolveGlobal(workspaceRoot);
-    const globalProjectConfig = this.customConfigResolver.resolveForProject(projectRoot, configPath);
-
-    return merge(globalDefaultConfig, projectDefaultConfig, globalCustomConfig, globalProjectConfig);
+    return buildConfiguration(this.defaultConfigResolver, this.customConfigResolver)(pathToProject, workspaceRoot, configPath);
   }
 
 

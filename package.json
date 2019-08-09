@@ -1,5 +1,6 @@
 {
     "name": "ud-angular-builders",
+    "version": "8.0.4",
     "private": true,
     "workspaces": [
         "packages/*"
@@ -9,7 +10,11 @@
         "type": "git",
         "url": "https://github.com/milottit/angular-builders"
     },
-    "author": "Thomas Milotti",
+    "author": {
+        "name": "Thomas Milotti",
+        "email": "thomas.milotti@gmail.com",
+        "url": "https://github.com/milottit"
+    },
     "license": "MIT",
     "engines": {
         "node": ">=8.9"

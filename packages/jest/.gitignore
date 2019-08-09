@@ -6,7 +6,11 @@ node_modules
 *.tgz
 package
 
+dist
 *.d.ts
 **/*.js
-typings
+src/schema.ts
+!symlinks-custom-root-jest.config.js
+!symlinks-jest.config.js
+!protractor*conf.js
 *.js.map
