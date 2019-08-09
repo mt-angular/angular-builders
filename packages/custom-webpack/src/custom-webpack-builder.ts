@@ -29,6 +29,7 @@ export type ReturnWebpackConfiguration = { configuration: Configuration; overrid
 export type FunctionWebpackConfiguration = (BuilderParameters: BuilderParameters) => Configuration | ReturnWebpackConfiguration;
 export type WebpackConfiguration = Configuration | FunctionWebpackConfiguration;
 
+
 export class CustomWebpackBuilder {
 
     static buildWebpackConfig(builderParameters: BuilderParameters, baseWebpackConfig: Configuration): Configuration {

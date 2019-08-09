@@ -1,4 +1,4 @@
-import { CustomWebpackBuilder, BuilderParameters } from './custom-webpack-builder';
+import { CustomWebpackBuilder, BuilderParameters, WebpackConfiguration, BuilderParametersOptions } from './custom-webpack-builder';
 import { MergeStrategies, CustomWebpackBuilderConfig } from './custom-webpack-builder-config';
 jest.mock('./webpack-config-merger');
 import { WebpackConfigMerger } from './webpack-config-merger';
@@ -28,13 +28,13 @@ const baseWebpackConfig = {
 
 
 
-function builderParameters(): BuilderParameters {
+function builderParameters(customWebpackConfig: Partial<BuilderParametersOptions> = {}): BuilderParameters {
     return {
         root: __dirname as Path,
         host: undefined,
-        options: { customWebpackConfig: {} } as any,
+        buildOptions: { customWebpackConfig } as any,
         projectRoot: undefined,
-        webpackConfiguration: { entry: 'index.js' }
+        baseWebpackConfig: baseWebpackConfig || { entry: 'index.js' }
     };
 }
 
@@ -62,7 +62,7 @@ describe('CustomWebpackBuilder test', () => {
 
     it('Should load the file specified in configuration', () => {
         const fileName = 'extra-webpack.config.js';
-        Object.assign(param.options.customWebpackConfig, { path: fileName });
+        Object.assign(param.buildOptions.customWebpackConfig, { path: fileName });
         CustomWebpackBuilder.buildWebpackConfig(param, baseWebpackConfig);
 
         expect(CustomWebpackBuilder.getWebpackConfig).toHaveBeenCalledWith(param.root, fileName);
@@ -74,7 +74,7 @@ describe('CustomWebpackBuilder test', () => {
         getWebpackConfig.mockReturnValueOnce(() => customWebpackConfiguration);
 
         const fileName = defaultWebpackConfigPath;
-        Object.assign(param.options.customWebpackConfig, { path: fileName, replaceDuplicatePlugins: true });
+        Object.assign(param.buildOptions.customWebpackConfig, { path: fileName, replaceDuplicatePlugins: true });
 
         CustomWebpackBuilder.buildWebpackConfig(param, baseWebpackConfig);
 
@@ -86,7 +86,7 @@ describe('CustomWebpackBuilder test', () => {
     it('Should pass on merge strategies', () => {
         const fileName = defaultWebpackConfigPath;
         const mergeStrategies: MergeStrategies = { blah: 'prepend' };
-        Object.assign(param.options.customWebpackConfig, { path: fileName, mergeStrategies });
+        Object.assign(param.buildOptions.customWebpackConfig, { path: fileName, mergeStrategies });
 
         CustomWebpackBuilder.buildWebpackConfig(param, baseWebpackConfig);
 
@@ -97,7 +97,7 @@ describe('CustomWebpackBuilder test', () => {
 
     it('Should pass on replaceDuplicatePlugins flag', () => {
         const fileName = defaultWebpackConfigPath;
-        Object.assign(param.options.customWebpackConfig, { path: fileName, replaceDuplicatePlugins: true });
+        Object.assign(param.buildOptions.customWebpackConfig, { path: fileName, replaceDuplicatePlugins: true });
 
         CustomWebpackBuilder.buildWebpackConfig(param, baseWebpackConfig);
 
@@ -106,4 +106,24 @@ describe('CustomWebpackBuilder test', () => {
         expect(WebpackConfigMerger.merge).toHaveBeenCalledWith(baseWebpackConfig, customWebpackConfiguration, {}, true);
     });
 
+    it('Should pass options to the webpack config function', () => {
+        const functionConfig = jest.fn(args => customWebpackConfiguration);
+        getWebpackConfig.mockReturnValueOnce(functionConfig);
+
+        const fileName = defaultWebpackConfigPath;
+        const param = builderParameters({ customWebpackConfig: { path: fileName, replaceDuplicatePlugins: true } });
+
+        CustomWebpackBuilder.buildWebpackConfig(param, baseWebpackConfig);
+        expect(functionConfig.mock.calls[ 0 ][ 0 ]).toEqual(param);
+    });
+
+    it('Should override basic configuration', () => {
+        getWebpackConfig.mockReturnValueOnce(args => ({ configuration: customWebpackConfiguration, override: true }));
+
+        const fileName = defaultWebpackConfigPath;
+        const param = builderParameters({ customWebpackConfig: { path: fileName, replaceDuplicatePlugins: true } });
+
+        const config = CustomWebpackBuilder.buildWebpackConfig(param, baseWebpackConfig);
+        expect(config).toEqual(customWebpackConfiguration);
+    });
 });
