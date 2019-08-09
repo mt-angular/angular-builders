@@ -6,3 +6,4 @@ export * from './browser/index';
 export * from './karma/index';
 export * from './server/index';
 export * from './custom-webpack-builder';
+export * from './custom-webpack-schema';
