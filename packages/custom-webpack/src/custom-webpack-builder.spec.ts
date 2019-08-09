@@ -32,6 +32,7 @@ function builderParameters(customWebpackConfig: Partial<BuilderParametersOptions
     return {
         root: __dirname as Path,
         host: undefined,
+        builderContext: undefined,
         buildOptions: { customWebpackConfig } as any,
         projectRoot: undefined,
         baseWebpackConfig: baseWebpackConfig || { entry: 'index.js' }
@@ -53,7 +54,7 @@ describe('CustomWebpackBuilder test', () => {
     it('Should load webpack.config.js if no path specified', () => {
         const fileName = defaultWebpackConfigPath;
         // createConfigFile(fileName);
-        CustomWebpackBuilder.buildWebpackConfig(param, baseWebpackConfig);
+        CustomWebpackBuilder.buildWebpackConfig(param);
 
         expect(CustomWebpackBuilder.getWebpackConfig).toHaveBeenCalledWith(param.root, fileName);
         expect(CustomWebpackBuilder.getWebpackConfig).toHaveReturnedWith(customWebpackConfiguration);
@@ -63,7 +64,7 @@ describe('CustomWebpackBuilder test', () => {
     it('Should load the file specified in configuration', () => {
         const fileName = 'extra-webpack.config.js';
         Object.assign(param.buildOptions.customWebpackConfig, { path: fileName });
-        CustomWebpackBuilder.buildWebpackConfig(param, baseWebpackConfig);
+        CustomWebpackBuilder.buildWebpackConfig(param);
 
         expect(CustomWebpackBuilder.getWebpackConfig).toHaveBeenCalledWith(param.root, fileName);
         expect(CustomWebpackBuilder.getWebpackConfig).toHaveReturnedWith(customWebpackConfiguration);
@@ -76,7 +77,7 @@ describe('CustomWebpackBuilder test', () => {
         const fileName = defaultWebpackConfigPath;
         Object.assign(param.buildOptions.customWebpackConfig, { path: fileName, replaceDuplicatePlugins: true });
 
-        CustomWebpackBuilder.buildWebpackConfig(param, baseWebpackConfig);
+        CustomWebpackBuilder.buildWebpackConfig(param);
 
         expect(getWebpackConfig).toHaveBeenCalledWith(param.root, fileName);
         expect(getWebpackConfig).toHaveReturnedWith(customWebpackConfiguration);
@@ -88,7 +89,7 @@ describe('CustomWebpackBuilder test', () => {
         const mergeStrategies: MergeStrategies = { blah: 'prepend' };
         Object.assign(param.buildOptions.customWebpackConfig, { path: fileName, mergeStrategies });
 
-        CustomWebpackBuilder.buildWebpackConfig(param, baseWebpackConfig);
+        CustomWebpackBuilder.buildWebpackConfig(param);
 
         expect(CustomWebpackBuilder.getWebpackConfig).toHaveBeenCalledWith(param.root, fileName);
         expect(CustomWebpackBuilder.getWebpackConfig).toHaveReturnedWith(customWebpackConfiguration);
@@ -99,7 +100,7 @@ describe('CustomWebpackBuilder test', () => {
         const fileName = defaultWebpackConfigPath;
         Object.assign(param.buildOptions.customWebpackConfig, { path: fileName, replaceDuplicatePlugins: true });
 
-        CustomWebpackBuilder.buildWebpackConfig(param, baseWebpackConfig);
+        CustomWebpackBuilder.buildWebpackConfig(param);
 
         expect(CustomWebpackBuilder.getWebpackConfig).toHaveBeenCalledWith(param.root, fileName);
         expect(CustomWebpackBuilder.getWebpackConfig).toHaveReturnedWith(customWebpackConfiguration);
@@ -113,7 +114,7 @@ describe('CustomWebpackBuilder test', () => {
         const fileName = defaultWebpackConfigPath;
         const param = builderParameters({ customWebpackConfig: { path: fileName, replaceDuplicatePlugins: true } });
 
-        CustomWebpackBuilder.buildWebpackConfig(param, baseWebpackConfig);
+        CustomWebpackBuilder.buildWebpackConfig(param);
         expect(functionConfig.mock.calls[ 0 ][ 0 ]).toEqual(param);
     });
 
@@ -123,7 +124,7 @@ describe('CustomWebpackBuilder test', () => {
         const fileName = defaultWebpackConfigPath;
         const param = builderParameters({ customWebpackConfig: { path: fileName, replaceDuplicatePlugins: true } });
 
-        const config = CustomWebpackBuilder.buildWebpackConfig(param, baseWebpackConfig);
+        const config = CustomWebpackBuilder.buildWebpackConfig(param);
         expect(config).toEqual(customWebpackConfiguration);
     });
 });

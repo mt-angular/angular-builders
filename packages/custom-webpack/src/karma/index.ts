@@ -9,16 +9,11 @@ import { Path, virtualFs } from '@angular-devkit/core';
 import * as fs from 'fs';
 import { CustomWebpackBuilder, NormalizedCustomWebpackKarmaBuildSchema } from '../custom-webpack-builder';
 import { Configuration } from 'webpack';
-// import { CustomWebpackSchema } from '../custom-webpack-schema';
-
-/* export interface NormalizedCustomWebpackKarmaBuildSchema extends NormalizedKarmaBuilderSchema, CustomWebpackSchema {
-}
- */
 
 export class CustomWebpackKarmaBuilder extends KarmaBuilder {
 
-    constructor(context: BuilderContext) {
-        super(context);
+    constructor(private builderContext: BuilderContext) {
+        super(builderContext);
     }
 
     buildWebpackConfig(root: Path,
@@ -27,10 +22,10 @@ export class CustomWebpackKarmaBuilder extends KarmaBuilder {
         host: virtualFs.Host<fs.Stats>,
         buildOptions: NormalizedCustomWebpackKarmaBuildSchema): Configuration {
 
-        const baseWebpackConfig = super.buildWebpackConfig(root, projectRoot, host, buildOptions);
-        const builderParameters = { root, projectRoot, host, buildOptions, baseWebpackConfig };
+        const baseWebpackConfig = super.buildWebpackConfig(root, projectRoot, sourceRoot, host, buildOptions);
+        const builderParameters = { root, projectRoot, sourceRoot, host, builderContext: this.builderContext, buildOptions, baseWebpackConfig };
 
-        return CustomWebpackBuilder.buildWebpackConfig(builderParameters, baseWebpackConfig);
+        return CustomWebpackBuilder.buildWebpackConfig(builderParameters);
     }
 }
 

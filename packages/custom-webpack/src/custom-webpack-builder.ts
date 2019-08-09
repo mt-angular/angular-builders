@@ -6,6 +6,7 @@ import * as fs from 'fs';
 import { WebpackConfigMerger } from './webpack-config-merger';
 import { CustomWebpackSchema } from './custom-webpack-schema';
 import { NormalizedServerBuilderServerSchema } from '@angular-devkit/build-angular/src/server/schema';
+import { BuilderContext } from '@angular-devkit/architect';
 
 
 export interface NormalizedCustomWebpackBrowserBuildSchema extends NormalizedBrowserBuilderSchema, CustomWebpackSchema { }
@@ -20,6 +21,7 @@ export interface BuilderParameters {
     projectRoot: Path;
     sourceRoot?: Path;
     host: virtualFs.Host<fs.Stats>;
+    builderContext: BuilderContext;
     buildOptions: BuilderParametersOptions;
     baseWebpackConfig: Configuration;
     // browserBuilderInstance: BrowserBuilder | KarmaBuilder | ServerBuilder;
@@ -32,9 +34,9 @@ export type WebpackConfiguration = Configuration | FunctionWebpackConfiguration;
 
 export class CustomWebpackBuilder {
 
-    static buildWebpackConfig(builderParameters: BuilderParameters, baseWebpackConfig: Configuration): Configuration {
+    static buildWebpackConfig(builderParameters: BuilderParameters): Configuration {
 
-        const { root, buildOptions } = builderParameters;
+        const { root, buildOptions, baseWebpackConfig } = builderParameters;
 
         const config = buildOptions.customWebpackConfig = Object.assign(new CustomWebpackBuilderConfig(), buildOptions.customWebpackConfig);
         const webpackConfigPath = config.path;
