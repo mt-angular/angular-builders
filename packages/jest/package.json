@@ -8,7 +8,7 @@
         "url": "https://github.com/milottit"
     },
     "repository": {
-        "url": "https://github.com/mt-angular/angular-builders/tree/7.0.0/packages/jest"
+        "url": "https://github.com/mt-angular/angular-builders/tree/angular7/packages/jest"
     },
     "license": "MIT",
     "engines": {

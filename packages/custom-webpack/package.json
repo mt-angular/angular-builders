@@ -9,7 +9,7 @@
         "url": "https://github.com/milottit"
     },
     "repository": {
-        "url": "https://github.com/mt-angular/angular-builders/tree/7.0.0/packages/custom-webpack"
+        "url": "https://github.com/mt-angular/angular-builders/tree/angular7/packages/custom-webpack"
     },
     "license": "MIT",
     "engines": {
