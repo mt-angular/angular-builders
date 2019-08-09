@@ -20,34 +20,47 @@ export interface BuilderParameters {
     projectRoot: Path;
     sourceRoot?: Path;
     host: virtualFs.Host<fs.Stats>;
-    options: BuilderParametersOptions;
-    webpackConfiguration: Configuration;
+    buildOptions: BuilderParametersOptions;
+    baseWebpackConfig: Configuration;
     // browserBuilderInstance: BrowserBuilder | KarmaBuilder | ServerBuilder;
 }
 
-export type FunctionWebpackConfiguration = (BuilderParameters: BuilderParameters) => Configuration;
+export type ReturnWebpackConfiguration = { configuration: Configuration; override?: boolean };
+export type FunctionWebpackConfiguration = (BuilderParameters: BuilderParameters) => Configuration | ReturnWebpackConfiguration;
 export type WebpackConfiguration = Configuration | FunctionWebpackConfiguration;
 
 export class CustomWebpackBuilder {
 
     static buildWebpackConfig(builderParameters: BuilderParameters, baseWebpackConfig: Configuration): Configuration {
 
-        const { root, options } = builderParameters;
+        const { root, buildOptions } = builderParameters;
 
-        const config = options.customWebpackConfig = Object.assign(new CustomWebpackBuilderConfig(), options.customWebpackConfig);
+        const config = buildOptions.customWebpackConfig = Object.assign(new CustomWebpackBuilderConfig(), buildOptions.customWebpackConfig);
         const webpackConfigPath = config.path;
 
         const customWebpackConfigExport = CustomWebpackBuilder.getWebpackConfig(root, webpackConfigPath);
         let customWebpackConfig: Configuration = undefined;
 
         // call the function if the module export a function, otherwise, just keep the config object
-        if (CustomWebpackBuilder.isConfigurationFunction(customWebpackConfigExport))
-            customWebpackConfig = customWebpackConfigExport(builderParameters);
-        else
+        if (CustomWebpackBuilder.isConfigurationFunction(customWebpackConfigExport)) {
+            const webpackConfig = customWebpackConfigExport(builderParameters);
+
+            if (CustomWebpackBuilder.isOverrideConfiguration(webpackConfig)) {
+                if (webpackConfig.override)
+                    return webpackConfig.configuration;
+
+                customWebpackConfig = webpackConfig.configuration;
+            } else
+                customWebpackConfig = webpackConfig;
+        } else
             customWebpackConfig = customWebpackConfigExport;
 
 
         return WebpackConfigMerger.merge(baseWebpackConfig, customWebpackConfig, config.mergeStrategies, config.replaceDuplicatePlugins);
+    }
+
+    static isOverrideConfiguration(returnWebpackConfig: Configuration | ReturnWebpackConfiguration): returnWebpackConfig is ReturnWebpackConfiguration {
+        return (returnWebpackConfig as any).configuration;
     }
 
     static isConfigurationFunction(configuration: WebpackConfiguration): configuration is FunctionWebpackConfiguration {
