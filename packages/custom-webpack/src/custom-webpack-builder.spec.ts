@@ -1,4 +1,6 @@
-import { CustomWebpackBuilder, BuilderParameters, WebpackConfiguration, BuilderParametersOptions } from './custom-webpack-builder';
+
+import { CustomWebpackBuilder, BuilderParameters } from './custom-webpack-builder';
+import { BuilderParametersOptions } from './custom-webpack-schema';
 import { MergeStrategies, CustomWebpackBuilderConfig } from './custom-webpack-builder-config';
 jest.mock('./webpack-config-merger');
 import { WebpackConfigMerger } from './webpack-config-merger';

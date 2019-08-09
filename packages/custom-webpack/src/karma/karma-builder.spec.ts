@@ -10,8 +10,9 @@ jest.mock('../custom-webpack-builder', () => ({
 
 import { normalize } from '@angular-devkit/core';
 import { CustomWebpackKarmaBuilder } from '.';
-import { NormalizedCustomWebpackKarmaBuildSchema, BuilderParameters } from '../custom-webpack-builder';
 import { KarmaBuilder } from '@angular-devkit/build-angular';
+import { NormalizedCustomWebpackKarmaBuildSchema } from '../custom-webpack-schema';
+import { BuilderParameters } from '../custom-webpack-builder';
 
 
 const commonConfig = { common: 1 };
