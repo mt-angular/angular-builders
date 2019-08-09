@@ -1,6 +1,6 @@
 {
     "name": "@ud-angular-builders/timestamp",
-    "version": "8.1.1",
+    "version": "8.1.2",
     "repository": {
         "type": "git",
         "url": "https://github.com/milottit/angular-builders/tree/angular8/packages/timestamp"
