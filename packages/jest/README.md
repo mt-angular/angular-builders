@@ -1,44 +1,35 @@
 # Jest builder for Angular build facade
 [![npm version](https://img.shields.io/npm/v/@angular-builders/jest.svg) ![npm](https://img.shields.io/npm/dm/@angular-builders/jest.svg)](https://www.npmjs.com/package/@angular-builders/jest)
 
+# This documentation is for version 8 only. Find documentation for version 7 [here](https://github.com/meltedspark/angular-builders/blob/7.x.x/packages/jest/README.md).
+
 Allows running `ng test` with Jest instead of Karma & Jasmine.  
 The builder comes to provide zero configuration setup for Jest while keeping the workspace clear of boilerplate code.
 
 ## Prerequisits
-  - [Angular CLI 6](https://www.npmjs.com/package/@angular/cli)
-  - [Jest](https://www.npmjs.com/package/jest)
+  - [Angular CLI 8](https://www.npmjs.com/package/@angular/cli)
+  - [Jest 24](https://www.npmjs.com/package/jest)
   
 ## Installation
 1. Remove Karma related libraries and files:
    ```Shell
-     npm remove karma karma-chrome-launcher karma-coverage-istanbul-reporter karma-jasmine karma-jasmine-html-reporter
-	 rm src/karma.conf.js
-	 rm src/test.ts
+	npm remove karma karma-chrome-launcher karma-coverage-istanbul-reporter karma-jasmine karma-jasmine-html-reporter
+	rm ./karma.conf.js ./src/test.ts
    ```
-2. Install the builder (and `jest` if you still haven't): `npm i -D jest @angular-builders/jest`
+2. Install the builder (and `jest` if you still haven't): `npm i -D jest @types/jest @angular-builders/jest`
 
 ## Updating Typescript configurations
-Although you run your unit tests with Jest, Protractor (e2e tests) still [has to use Jasmine](https://github.com/angular/protractor/issues/3889).
-Due to this fact it's possible that you favorite IDE will get confused with the typings and will propose you Jasmine types in unit tests or Jest types in e2e test.
-In order to avoid these problems you have to specify the types explicitly:
+1. In _tsconfig.spec.json_ (root directory, used by Jest): 
+   - Replace `jasmine` in `types` array with `jest`  
+     _You want your tests to be type-checked against Jest typings and not Jasmine._
+   - Remove `test.ts` entry from `files` array  
+     _This file was responsible for Karma setup, you don't need it here anymore._
 
-1. In _tsconfig.spec.json_ (_src_ directory, used by Jest): 
-	```js
-	"compilerOptions": {
-		...
-		"module": "commonjs",
-		"types": ["jest"]
-	} 
-	```
-	Make sure the module is `commonjs`, otherwise tests will fail at imports.
-
-2. In _tsconfig.json_ (root directory, used by IDE): 
-	```js
-	"compilerOptions": {
-		...
-		"types": ["jest"]
-	} 
-	```
+2. In  _tsconfig.json_ (root directory, used by IDE): 
+   - Add `jest` to `types` array  
+     _Although you run your unit tests with Jest, Protractor (e2e tests) still [has to use Jasmine](https://github.com/angular/protractor/issues/3889). Due to this fact it’s possible that you favorite IDE will get confused with the typings and will propose you Jasmine types in unit tests.  
+    `tsconfig.json` is the config file that your IDE uses so you have to instruct it explicitly to use Jest typings.  
+     Bear in mind that the other side of the coin is that your IDE will propose you Jest types in your e2e tests._
 
 ## Running with Angular CLI
   - In your `angular.json`:

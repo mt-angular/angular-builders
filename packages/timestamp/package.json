@@ -1,31 +1,42 @@
 {
     "name": "@ud-angular-builders/timestamp",
-    "version": "7.2.0",
+    "version": "8.0.4",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/milottit/angular-builders/tree/8.0.0/packages/timestamp"
+    },
+    "author": {
+        "name": "Thomas Milotti",
+        "email": "thomas.milotti@gmail.com",
+        "url": "https://github.com/milottit"
+    },
     "license": "MIT",
-    "author": "Thomas Milotti",
+    "main": "dist/index.js",
+    "files": [
+        "dist",
+        "builders.json"
+    ],
+    "engines": {
+        "node": ">=10.0.0"
+    },
     "builders": "builders.json",
     "scripts": {
-        "prebuild": "rm -R dist",
-        "build": "npx tsc -p tsconfig.build.json",
-        "start": "tsc -p tsconfig.build.json --watch"
+        "prebuild": "yarn clean && yarn generate",
+        "build": "../../node_modules/.bin/tsc",
+        "postbuild": "yarn copy",
+        "clean": "../../node_modules/.bin/rimraf dist src/schema.ts",
+        "copy": "../../node_modules/.bin/cpy src/schema.json dist",
+        "generate": "../../node_modules/.bin/quicktype -s schema src/schema.json -o src/schema.ts",
+        "start": "tsc -p tsconfig.build.json --watch",
+        "start-test": "tsc -p tsconfig.test.json --watch"
     },
     "devDependencies": {
-        "@angular/common": "8.2.0",
-        "@angular/core": "^8.2.0",
-        "@angular/platform-browser": "8.2.0",
-        "@types/dateformat": "^3.0.0",
-        "rxjs": "^6.5.2"
+        "@types/dateformat": "^3.0.0"
     },
     "peerDependencies": {
-        "@angular-devkit/build-angular": ">=0.12.3"
+        "@angular-devkit/build-angular": ">=0.801.0"
     },
     "dependencies": {
-        "@angular/cli": "^8.2.0",
-        "@angular/core": "^8.2.0",
-        "@angular/platform-browser-dynamic": ">=2.0.0",
-        "core-js": ">=2.0.0 < 4.0.0",
-        "dateformat": "^3.0.3",
-        "rxjs": "^6.4.0",
-        "zone.js": "~0.9.1"
+        "dateformat": "^3.0.3"
     }
 }
