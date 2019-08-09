@@ -1,13 +1,16 @@
 {
     "name": "@mt-angular-builders/custom-webpack",
-    "version": "8.0.1",
+    "version": "7.5.1",
     "description": "Custom webpack builders for Angular build facade. Allow to modify Angular build configuration without ejecting it",
     "main": "dist/index.js",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/mt-angular/angular-builders/packages/custom-webpack"
+    "author": {
+        "name": "Thomas Milotti",
+        "email": "thomas.milotti@gmail.com",
+        "url": "https://github.com/milottit"
     },
-    "author": "Thomas Milotti",
+    "repository": {
+        "url": "https://github.com/mt-angular/angular-builders/tree/7.0.0/packages/custom-webpack"
+    },
     "license": "MIT",
     "engines": {
         "node": ">=8.9"

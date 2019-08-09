@@ -1,8 +1,15 @@
 {
     "name": "@ud-angular-builders/timestamp",
-    "version": "7.2.0",
+    "version": "7.5.1",
     "license": "MIT",
-    "author": "Thomas Milotti",
+    "author": {
+        "name": "Thomas Milotti",
+        "email": "thomas.milotti@gmail.com",
+        "url": "https://github.com/milottit"
+    },
+    "repository": {
+        "url": "https://github.com/mt-angular/angular-builders/tree/7.0.0/packages/timestamp"
+    },
     "builders": "builders.json",
     "scripts": {
         "prebuild": "rm -R dist",

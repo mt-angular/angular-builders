@@ -1,8 +1,15 @@
 {
     "name": "@ud-angular-builders/jest",
-    "version": "7.2.1",
+    "version": "7.5.1",
     "description": "Jest builder for Angular build facade. Allows ng test run with Jest instead of Karma",
-    "author": "Thomas Milotti",
+    "author": {
+        "name": "Thomas Milotti",
+        "email": "thomas.milotti@gmail.com",
+        "url": "https://github.com/milottit"
+    },
+    "repository": {
+        "url": "https://github.com/mt-angular/angular-builders/tree/7.0.0/packages/jest"
+    },
     "license": "MIT",
     "engines": {
         "node": ">=8.9.0"
