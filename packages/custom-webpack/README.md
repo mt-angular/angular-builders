@@ -1,7 +1,8 @@
 # Custom webpack [builders](#builders) for Angular build facade
 <!-- [![npm version](https://img.shields.io/npm/v/@up-angular-builders/custom-webpack.svg) ![npm](https://img.shields.io/npm/dm/@up-angular-builders/custom-webpack.svg)](https://www.npmjs.com/package/@up-angular-builders/custom-webpack) -->
 
-This branch is compatible with Angular 7 and not Angular 8. Please, refer to (https://github.com/mt-angular/angular-builders/tree/7.x.x/packages/custom-webpack)
+This branch is compatible with Angular 7 and not **not Angular 8**. Please, refer to (https://www.npmjs.com/package/@ud-angular-builders/custom-webpack)
+for Angular 8.
 
 Fork from [angular-builders](https://github.com/just-jeb/angular-builders/tree/7.x.x/packages/custom-webpack) but with enhancement.
 The webpack configuration is being passed with angular builder context, angular build options and the angular webpack configuration.

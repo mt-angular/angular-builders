@@ -30,7 +30,8 @@
     ],
     "scripts": {
         "postbuild": "yarn copy-assets-for-independent-dist && yarn test && yarn run e2e",
-        "build": "rm -R dist && npx tsc && npx ts-node ../../merge-schemes.ts",
+        "build": "rm -R dist && npx tsc -p tsconfig.build.json && npx ts-node ../../merge-schemes.ts",
+        "start": "tsc -p tsconfig.build.json --watch",
         "test": "npx jest --verbose false --config ../../jest-ut.config.js",
         "e2e": "npx jest --verbose false --config ../../jest-e2e.config.js",
         "copy-assets-for-independent-dist": "yarn copy-builders-to-dist && yarn create-package-in-dist",

@@ -1,6 +1,10 @@
-# @angular-builders [![Build Status](https://travis-ci.org/meltedspark/angular-builders.svg?branch=master)](https://travis-ci.org/meltedspark/angular-builders) [![Greenkeeper badge](https://badges.greenkeeper.io/meltedspark/angular-builders.svg)](https://greenkeeper.io/) ![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg)  
+# @angular-builders 
+<!-- [![Build Status](https://travis-ci.org/meltedspark/angular-builders.svg?branch=master)](https://travis-ci.org/meltedspark/angular-builders) [![Greenkeeper badge](https://badges.greenkeeper.io/meltedspark/angular-builders.svg)](https://greenkeeper.io/) ![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg)   -->
 
 The purpose of this repository is to consolidate all the community builders for Angular build facade.
+
+This branch is compatible with Angular 7 and **not Angular 8**. Please, refer to (https://www.npmjs.com/package/@ud-angular-builders)
+for **Angular 8**.
 
 # Builders
 

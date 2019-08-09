@@ -1,5 +1,11 @@
 # Jest builder for Angular build facade
-[![npm version](https://img.shields.io/npm/v/@angular-builders/jest.svg) ![npm](https://img.shields.io/npm/dm/@angular-builders/jest.svg)](https://www.npmjs.com/package/@angular-builders/jest)
+<!-- [![npm version](https://img.shields.io/npm/v/@angular-builders/jest.svg) ![npm](https://img.shields.io/npm/dm/@angular-builders/jest.svg)](https://www.npmjs.com/package/@angular-builders/jest) -->
+
+Fork from [angular-builders](https://github.com/just-jeb/angular-builders/tree/7.x.x/packages/jest).
+Only [@ud-angular-builders/custom-webpack](https://www.npmjs.com/package/@ud-angular-builders/custom-webpack) has been enhanced for now.
+
+This branch is compatible with Angular 7 and not **not Angular 8**. Please, refer to (https://www.npmjs.com/package/@ud-angular-builders/jest) 
+for Angular 8.
 
 Allows running `ng test` with Jest instead of Karma & Jasmine.  
 The builder comes to provide zero configuration setup for Jest while keeping the workspace clear of boilerplate code.

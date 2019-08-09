@@ -7,7 +7,7 @@
     "description": "A consolidation of community builders for Angular build facade",
     "repository": {
         "type": "git",
-        "url": "https://github.com/milottit/angular-builders"
+        "url": "https://github.com/mt-angular/angular-builders/tree/angular7"
     },
     "author": "Thomas Milotti",
     "license": "MIT",
@@ -15,7 +15,7 @@
         "node": ">=8.9"
     },
     "scripts": {
-        "postbuild": "npm test && npm run e2e",
+        "postbuild": "yarn test && yarn run e2e",
         "build2": "tsc && ts-node merge-schemes.ts",
         "test2": "jest src",
         "e2e": "jest e2e",
@@ -23,8 +23,11 @@
         "bootstrap": "lerna bootstrap",
         "test": "lerna run test --stream",
         "start": "lerna run --parallel start",
+        "prepare": "echo prepare",
         "prepare-example": "rimraf mono-ui/build && rimraf mono-common/build && lerna run prepare",
-        "build": "npm run prepare && lerna run --parallel build"
+        "build": "yarn run prepare && lerna run --parallel build",
+        "push-github": "lerna version",
+        "push-npm-github": "lerna publish"
     },
     "devDependencies": {
         "@angular-devkit/build-angular": "^0.13.8",
@@ -42,7 +45,6 @@
         "typescript": "3.2.2"
     },
     "dependencies": {
-        "@upradata/browser-util": "^1.0.8",
-        "rxjs": "6.4.0"
+        "@upradata/browser-util": "^1.0.8"
     }
 }
