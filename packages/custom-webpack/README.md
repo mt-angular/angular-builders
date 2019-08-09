@@ -11,7 +11,7 @@ the basic angular webpack configuration.
 
 Allow customizing build configuration without ejecting webpack configuration (`ng eject`)
 
-# This documentation is for version 8 only. Find documentation for version 7 [here](https://github.com/meltedspark/angular-builders/blob/7.x.x/packages/custom-webpack/README.md).
+# This documentation is for version 8 only. Find documentation for version 7 [here](https://github.com/mt-angular/angular-builders/tree/angular8/packages/custom-webpack/README.md).
 
 # Prerequisites:
  - [Angular CLI 8](https://www.npmjs.com/package/@angular/cli)
