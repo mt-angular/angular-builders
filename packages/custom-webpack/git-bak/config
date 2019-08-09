@@ -1,0 +1,17 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+#[remote "origin"]
+#	url = https://github.com/mt-angular/angular-builders.git
+#	fetch = +refs/heads/*:refs/remotes/origin/*
+[remote "origin"]
+	url = git@ssh.dev.azure.com:v3/milottit/CustomWebpackBuilder%20for%20Angular/CustomWebpackBuilder%20for%20Angular
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
+[branch "angular8"]
+	remote = origin
+	merge = refs/heads/angular8

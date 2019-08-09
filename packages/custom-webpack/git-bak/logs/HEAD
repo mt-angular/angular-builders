@@ -1,0 +1,53 @@
+0000000000000000000000000000000000000000 e27d4c56bd6aa02a9390afd7db61de438efc488c Thomas Milotti <thomas.milotti@gmail.com> 1551280592 +0100	commit (initial): Git init
+e27d4c56bd6aa02a9390afd7db61de438efc488c ce113ef89f6048fb294ed5b4d73cd98e6fe331b8 Thomas Milotti <thomas.milotti@gmail.com> 1551353982 +0100	commit: v8.0.0
+ce113ef89f6048fb294ed5b4d73cd98e6fe331b8 550a249bd2e7cbe26d9902f3a0756a03bb210b30 Thomas Milotti <thomas.milotti@gmail.com> 1551450080 +0100	commit: v8.0.1
+550a249bd2e7cbe26d9902f3a0756a03bb210b30 25cafd64119199e254cdcc8264cf4e872e59c1e3 Thomas Milotti <thomas.milotti@gmail.com> 1551451085 +0100	commit: add builders.dist.json for the case we want to copy the dist folder and it works well alone
+25cafd64119199e254cdcc8264cf4e872e59c1e3 25cafd64119199e254cdcc8264cf4e872e59c1e3 Thomas Milotti <thomas.milotti@gmail.com> 1565206533 +0200	checkout: moving from master to angular8
+25cafd64119199e254cdcc8264cf4e872e59c1e3 426b1d6bae5cb8016fc1a6d300ccca8cb14a4c86 Thomas Milotti <thomas.milotti@gmail.com> 1565206547 +0200	commit: Refactoring for Angular 8
+426b1d6bae5cb8016fc1a6d300ccca8cb14a4c86 e79b4d56a73f3bcd87c8daeb792f32b6b955710e Thomas Milotti <thomas.milotti@gmail.com> 1565207211 +0200	commit: add github url + LICENCE
+e79b4d56a73f3bcd87c8daeb792f32b6b955710e b561e3865fc496048d77677b9f4a427a81edf7a0 Thomas Milotti <thomas.milotti@gmail.com> 1565207228 +0200	commit: 8.0.2
+b561e3865fc496048d77677b9f4a427a81edf7a0 e90ee6b47b3812acb73a719a91c194d3d94b73df Thomas Milotti <thomas.milotti@gmail.com> 1565207276 +0200	commit: 8.0.3
+e90ee6b47b3812acb73a719a91c194d3d94b73df 6e73ee337daf2ba2a71c3f00f84c95660c0e859c Thomas Milotti <thomas.milotti@gmail.com> 1565334932 +0200	commit: Add override parameter + README
+6e73ee337daf2ba2a71c3f00f84c95660c0e859c 6e73ee337daf2ba2a71c3f00f84c95660c0e859c Thomas Milotti <thomas.milotti@gmail.com> 1565334954 +0200	checkout: moving from angular8 to angular7
+6e73ee337daf2ba2a71c3f00f84c95660c0e859c 25cafd64119199e254cdcc8264cf4e872e59c1e3 Thomas Milotti <thomas.milotti@gmail.com> 1565334968 +0200	checkout: moving from angular7 to master
+25cafd64119199e254cdcc8264cf4e872e59c1e3 6e73ee337daf2ba2a71c3f00f84c95660c0e859c Thomas Milotti <thomas.milotti@gmail.com> 1565335056 +0200	checkout: moving from master to angular7
+6e73ee337daf2ba2a71c3f00f84c95660c0e859c 25cafd64119199e254cdcc8264cf4e872e59c1e3 Thomas Milotti <thomas.milotti@gmail.com> 1565335086 +0200	checkout: moving from angular7 to master
+25cafd64119199e254cdcc8264cf4e872e59c1e3 25cafd64119199e254cdcc8264cf4e872e59c1e3 Thomas Milotti <thomas.milotti@gmail.com> 1565335181 +0200	checkout: moving from master to angular7
+25cafd64119199e254cdcc8264cf4e872e59c1e3 25cafd64119199e254cdcc8264cf4e872e59c1e3 Thomas Milotti <thomas.milotti@gmail.com> 1565335264 +0200	checkout: moving from angular7 to master
+25cafd64119199e254cdcc8264cf4e872e59c1e3 6e73ee337daf2ba2a71c3f00f84c95660c0e859c Thomas Milotti <thomas.milotti@gmail.com> 1565335271 +0200	merge angular8: Fast-forward
+6e73ee337daf2ba2a71c3f00f84c95660c0e859c 25cafd64119199e254cdcc8264cf4e872e59c1e3 Thomas Milotti <thomas.milotti@gmail.com> 1565335303 +0200	checkout: moving from master to angular7
+25cafd64119199e254cdcc8264cf4e872e59c1e3 7567a4cf01bdf989300e5b5e2d9c471ad84ceb12 Thomas Milotti <thomas.milotti@gmail.com> 1565336113 +0200	commit: update README
+7567a4cf01bdf989300e5b5e2d9c471ad84ceb12 6e73ee337daf2ba2a71c3f00f84c95660c0e859c Thomas Milotti <thomas.milotti@gmail.com> 1565336125 +0200	checkout: moving from angular7 to master
+6e73ee337daf2ba2a71c3f00f84c95660c0e859c 6e73ee337daf2ba2a71c3f00f84c95660c0e859c Thomas Milotti <thomas.milotti@gmail.com> 1565336577 +0200	checkout: moving from master to angular8
+6e73ee337daf2ba2a71c3f00f84c95660c0e859c 7567a4cf01bdf989300e5b5e2d9c471ad84ceb12 Thomas Milotti <thomas.milotti@gmail.com> 1565336663 +0200	checkout: moving from angular8 to angular7
+7567a4cf01bdf989300e5b5e2d9c471ad84ceb12 6e73ee337daf2ba2a71c3f00f84c95660c0e859c Thomas Milotti <thomas.milotti@gmail.com> 1565336690 +0200	checkout: moving from angular7 to master
+6e73ee337daf2ba2a71c3f00f84c95660c0e859c 7567a4cf01bdf989300e5b5e2d9c471ad84ceb12 Thomas Milotti <thomas.milotti@gmail.com> 1565336752 +0200	checkout: moving from master to angular7
+7567a4cf01bdf989300e5b5e2d9c471ad84ceb12 6e73ee337daf2ba2a71c3f00f84c95660c0e859c Thomas Milotti <thomas.milotti@gmail.com> 1565336790 +0200	checkout: moving from angular7 to angular8
+6e73ee337daf2ba2a71c3f00f84c95660c0e859c 7567a4cf01bdf989300e5b5e2d9c471ad84ceb12 Thomas Milotti <thomas.milotti@gmail.com> 1565337061 +0200	checkout: moving from angular8 to angular7
+7567a4cf01bdf989300e5b5e2d9c471ad84ceb12 594955156ac1c8ac4e2391f4cb866642090664b9 Thomas Milotti <thomas.milotti@gmail.com> 1565338036 +0200	commit: update for angular 7 comptatibility
+594955156ac1c8ac4e2391f4cb866642090664b9 594955156ac1c8ac4e2391f4cb866642090664b9 Thomas Milotti <thomas.milotti@gmail.com> 1565338184 +0200	checkout: moving from angular7 to angular7
+594955156ac1c8ac4e2391f4cb866642090664b9 6e73ee337daf2ba2a71c3f00f84c95660c0e859c Thomas Milotti <thomas.milotti@gmail.com> 1565338254 +0200	checkout: moving from angular7 to master
+6e73ee337daf2ba2a71c3f00f84c95660c0e859c 594955156ac1c8ac4e2391f4cb866642090664b9 Thomas Milotti <thomas.milotti@gmail.com> 1565338286 +0200	checkout: moving from master to angular7
+594955156ac1c8ac4e2391f4cb866642090664b9 6e73ee337daf2ba2a71c3f00f84c95660c0e859c Thomas Milotti <thomas.milotti@gmail.com> 1565338291 +0200	checkout: moving from angular7 to angular8
+6e73ee337daf2ba2a71c3f00f84c95660c0e859c 594955156ac1c8ac4e2391f4cb866642090664b9 Thomas Milotti <thomas.milotti@gmail.com> 1565338325 +0200	checkout: moving from angular8 to angular7
+594955156ac1c8ac4e2391f4cb866642090664b9 6e73ee337daf2ba2a71c3f00f84c95660c0e859c Thomas Milotti <thomas.milotti@gmail.com> 1565338523 +0200	checkout: moving from angular7 to angular8
+6e73ee337daf2ba2a71c3f00f84c95660c0e859c 6e73ee337daf2ba2a71c3f00f84c95660c0e859c Thomas Milotti <thomas.milotti@gmail.com> 1565338555 +0200	checkout: moving from angular8 to master
+6e73ee337daf2ba2a71c3f00f84c95660c0e859c 6e73ee337daf2ba2a71c3f00f84c95660c0e859c Thomas Milotti <thomas.milotti@gmail.com> 1565338575 +0200	checkout: moving from master to master
+6e73ee337daf2ba2a71c3f00f84c95660c0e859c c62cb767a107bf8ccbfe9b64047709184f0abef5 Thomas Milotti <thomas.milotti@gmail.com> 1565339671 +0200	commit: override + BuildParameters change name
+c62cb767a107bf8ccbfe9b64047709184f0abef5 2931a26f3255ebbbf2b4d0f12dc4917114e7d4b2 Thomas Milotti <thomas.milotti@gmail.com> 1565340519 +0200	commit: Override option
+2931a26f3255ebbbf2b4d0f12dc4917114e7d4b2 3e41fcf76f508097b25fb9bf26d7ec552514b0e4 Thomas Milotti <thomas.milotti@gmail.com> 1565346430 +0200	commit: Change BuilderParameters
+3e41fcf76f508097b25fb9bf26d7ec552514b0e4 2931a26f3255ebbbf2b4d0f12dc4917114e7d4b2 Thomas Milotti <thomas.milotti@gmail.com> 1565346595 +0200	reset: moving to HEAD~1
+2931a26f3255ebbbf2b4d0f12dc4917114e7d4b2 2931a26f3255ebbbf2b4d0f12dc4917114e7d4b2 Thomas Milotti <thomas.milotti@gmail.com> 1565346643 +0200	reset: moving to HEAD
+2931a26f3255ebbbf2b4d0f12dc4917114e7d4b2 2931a26f3255ebbbf2b4d0f12dc4917114e7d4b2 Thomas Milotti <thomas.milotti@gmail.com> 1565346716 +0200	checkout: moving from master to angular7-dev
+2931a26f3255ebbbf2b4d0f12dc4917114e7d4b2 90f3044fe59042ea44e6cd49705d7bb2ca502ee5 Thomas Milotti <thomas.milotti@gmail.com> 1565346724 +0200	commit: Change BuilderParameters
+90f3044fe59042ea44e6cd49705d7bb2ca502ee5 594955156ac1c8ac4e2391f4cb866642090664b9 Thomas Milotti <thomas.milotti@gmail.com> 1565346730 +0200	checkout: moving from angular7-dev to angular7
+594955156ac1c8ac4e2391f4cb866642090664b9 896aa1853f8bef67fc462316e322b091bc467005 Thomas Milotti <thomas.milotti@gmail.com> 1565346788 +0200	commit (merge): Merge Conflict
+896aa1853f8bef67fc462316e322b091bc467005 2931a26f3255ebbbf2b4d0f12dc4917114e7d4b2 Thomas Milotti <thomas.milotti@gmail.com> 1565346814 +0200	checkout: moving from angular7 to master
+2931a26f3255ebbbf2b4d0f12dc4917114e7d4b2 896aa1853f8bef67fc462316e322b091bc467005 Thomas Milotti <thomas.milotti@gmail.com> 1565346838 +0200	merge angular7: Fast-forward
+896aa1853f8bef67fc462316e322b091bc467005 594955156ac1c8ac4e2391f4cb866642090664b9 Thomas Milotti <thomas.milotti@gmail.com> 1565346865 +0200	reset: moving to HEAD~1
+594955156ac1c8ac4e2391f4cb866642090664b9 896aa1853f8bef67fc462316e322b091bc467005 Thomas Milotti <thomas.milotti@gmail.com> 1565346902 +0200	checkout: moving from master to angular7
+896aa1853f8bef67fc462316e322b091bc467005 594955156ac1c8ac4e2391f4cb866642090664b9 Thomas Milotti <thomas.milotti@gmail.com> 1565346918 +0200	checkout: moving from angular7 to master
+594955156ac1c8ac4e2391f4cb866642090664b9 6e73ee337daf2ba2a71c3f00f84c95660c0e859c Thomas Milotti <thomas.milotti@gmail.com> 1565346936 +0200	checkout: moving from master to angular8
+6e73ee337daf2ba2a71c3f00f84c95660c0e859c 594955156ac1c8ac4e2391f4cb866642090664b9 Thomas Milotti <thomas.milotti@gmail.com> 1565349358 +0200	checkout: moving from angular8 to master
+594955156ac1c8ac4e2391f4cb866642090664b9 594955156ac1c8ac4e2391f4cb866642090664b9 Thomas Milotti <thomas.milotti@gmail.com> 1565349382 +0200	checkout: moving from master to master
+594955156ac1c8ac4e2391f4cb866642090664b9 896aa1853f8bef67fc462316e322b091bc467005 Thomas Milotti <thomas.milotti@gmail.com> 1565349394 +0200	checkout: moving from master to angular7

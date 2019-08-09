@@ -1,0 +1,11 @@
+0000000000000000000000000000000000000000 e27d4c56bd6aa02a9390afd7db61de438efc488c Thomas Milotti <thomas.milotti@gmail.com> 1551280592 +0100	commit (initial): Git init
+e27d4c56bd6aa02a9390afd7db61de438efc488c ce113ef89f6048fb294ed5b4d73cd98e6fe331b8 Thomas Milotti <thomas.milotti@gmail.com> 1551353982 +0100	commit: v8.0.0
+ce113ef89f6048fb294ed5b4d73cd98e6fe331b8 550a249bd2e7cbe26d9902f3a0756a03bb210b30 Thomas Milotti <thomas.milotti@gmail.com> 1551450080 +0100	commit: v8.0.1
+550a249bd2e7cbe26d9902f3a0756a03bb210b30 25cafd64119199e254cdcc8264cf4e872e59c1e3 Thomas Milotti <thomas.milotti@gmail.com> 1551451085 +0100	commit: add builders.dist.json for the case we want to copy the dist folder and it works well alone
+25cafd64119199e254cdcc8264cf4e872e59c1e3 6e73ee337daf2ba2a71c3f00f84c95660c0e859c Thomas Milotti <thomas.milotti@gmail.com> 1565335271 +0200	merge angular8: Fast-forward
+6e73ee337daf2ba2a71c3f00f84c95660c0e859c c62cb767a107bf8ccbfe9b64047709184f0abef5 Thomas Milotti <thomas.milotti@gmail.com> 1565339671 +0200	commit: override + BuildParameters change name
+c62cb767a107bf8ccbfe9b64047709184f0abef5 2931a26f3255ebbbf2b4d0f12dc4917114e7d4b2 Thomas Milotti <thomas.milotti@gmail.com> 1565340519 +0200	commit: Override option
+2931a26f3255ebbbf2b4d0f12dc4917114e7d4b2 3e41fcf76f508097b25fb9bf26d7ec552514b0e4 Thomas Milotti <thomas.milotti@gmail.com> 1565346430 +0200	commit: Change BuilderParameters
+3e41fcf76f508097b25fb9bf26d7ec552514b0e4 2931a26f3255ebbbf2b4d0f12dc4917114e7d4b2 Thomas Milotti <thomas.milotti@gmail.com> 1565346595 +0200	reset: moving to HEAD~1
+2931a26f3255ebbbf2b4d0f12dc4917114e7d4b2 896aa1853f8bef67fc462316e322b091bc467005 Thomas Milotti <thomas.milotti@gmail.com> 1565346838 +0200	merge angular7: Fast-forward
+896aa1853f8bef67fc462316e322b091bc467005 594955156ac1c8ac4e2391f4cb866642090664b9 Thomas Milotti <thomas.milotti@gmail.com> 1565346865 +0200	reset: moving to HEAD~1

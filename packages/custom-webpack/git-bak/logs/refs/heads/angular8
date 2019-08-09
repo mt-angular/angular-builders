@@ -1,0 +1,6 @@
+0000000000000000000000000000000000000000 25cafd64119199e254cdcc8264cf4e872e59c1e3 Thomas Milotti <thomas.milotti@gmail.com> 1565206533 +0200	branch: Created from HEAD
+25cafd64119199e254cdcc8264cf4e872e59c1e3 426b1d6bae5cb8016fc1a6d300ccca8cb14a4c86 Thomas Milotti <thomas.milotti@gmail.com> 1565206547 +0200	commit: Refactoring for Angular 8
+426b1d6bae5cb8016fc1a6d300ccca8cb14a4c86 e79b4d56a73f3bcd87c8daeb792f32b6b955710e Thomas Milotti <thomas.milotti@gmail.com> 1565207211 +0200	commit: add github url + LICENCE
+e79b4d56a73f3bcd87c8daeb792f32b6b955710e b561e3865fc496048d77677b9f4a427a81edf7a0 Thomas Milotti <thomas.milotti@gmail.com> 1565207228 +0200	commit: 8.0.2
+b561e3865fc496048d77677b9f4a427a81edf7a0 e90ee6b47b3812acb73a719a91c194d3d94b73df Thomas Milotti <thomas.milotti@gmail.com> 1565207276 +0200	commit: 8.0.3
+e90ee6b47b3812acb73a719a91c194d3d94b73df 6e73ee337daf2ba2a71c3f00f84c95660c0e859c Thomas Milotti <thomas.milotti@gmail.com> 1565334932 +0200	commit: Add override parameter + README
