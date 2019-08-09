@@ -2,19 +2,24 @@
     "$schema": "@angular-devkit/architect/src/builders-schema.json",
     "builders": {
         "browser": {
-            "class": "./browser",
-            "schema": "./browser/schema.json",
+            "class": "./dist/browser",
+            "schema": "./dist/browser/schema.json",
             "description": "Build browser app extended with custom webpack config"
         },
         "server": {
-            "class": "./server",
-            "schema": "./server/schema.json",
+            "class": "./dist/server",
+            "schema": "./dist/server/schema.json",
             "description": "Build server app extended with custom webpack config"
         },
         "karma": {
-            "class": "./karma",
-            "schema": "./karma/schema.json",
+            "class": "./dist/karma",
+            "schema": "./dist/karma/schema.json",
             "description": "Karma server extended with custom webpack config"
+        },
+        "dev-server": {
+            "class": "./dist/dev-server",
+            "schema": "./dist/dev-server/schema.json",
+            "description": "Dev server extended with custom webpack config"
         }
     }
 }

@@ -1,9 +1,3 @@
 {
-  "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "declarationDir": "typings"
-  },
-  "files": [
-    "src/jest.builder.ts"
-  ]
+    "extends": "../../tsconfig.json"
 }

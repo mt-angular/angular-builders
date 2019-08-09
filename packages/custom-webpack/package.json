@@ -1,15 +1,17 @@
 {
-    "name": "@mt-angular-builders/custom-webpack",
-    "version": "7.2.0",
+    "name": "@ud-angular-builders/custom-webpack",
+    "version": "8.0.3",
+    "author": {
+        "name": "Thomas Milotti",
+        "email": "thomas.milotti@gmail.com",
+        "url": "https://github.com/milottit"
+    },
+    "repository": {
+        "url": "https://github.com/mt-angular/angular-builders.git"
+    },
+    "license": "MIT",
     "description": "Custom webpack builders for Angular build facade. Allow to modify Angular build configuration without ejecting it",
     "main": "dist/index.js",
-    "typings": "typings/index.d.ts",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/meltedspark/angular-builders/packages/custom-webpack"
-    },
-    "author": "Thomas Milotti",
-    "license": "MIT",
     "engines": {
         "node": ">=8.9"
     },
@@ -17,27 +19,36 @@
         "cli",
         "angular",
         "builder",
-        "angular6",
+        "angular",
         "angular-cli",
         "webpack",
         "custom"
     ],
+    "files": [
+        "dist"
+    ],
     "scripts": {
-        "postbuild": "yarn copy-builders-to-dist && yarn test && yarn run e2e",
-        "build": "../../node_modules/.bin/tsc && ../../node_modules/.bin/ts-node ../../merge-schemes.ts",
-        "test": "../../node_modules/.bin/jest --verbose false --config ../../jest-ut.config.js",
-        "e2e": "../../node_modules/.bin/jest --verbose false --config ../../jest-e2e.config.js",
-        "copy-builders-to-dist": "cp builders.json dist",
-        "copy-json-to-dist2": "cp src/browser/schema.json dist/browser && cp src/server/schema.json dist/server && cp src/karma/schema.json dist/karma && cp builders.dist.json dist/builders.json && cp package.dist.json dist/package.json"
+        "prebuild": "rm -R dist",
+        "postbuild2": "yarn copy-builders-to-dist && yarn test && yarn e2e",
+        "postbuild": "yarn copy-assets-for-independent-dist && yarn test && yarn e2e",
+        "build": "npx tsc -p tsconfig.build.json && yarn generate-schemes",
+        "generate-schemes": "npx ts-node ../../merge-schemes.ts",
+        "test": "yarn generate-schemes && npx jest --verbose false --config ../../jest-ut.config.js",
+        "e2e": "npx jest --passWithNoTests --verbose false --config ../../jest-e2e.config.js",
+        "copy-assets-for-independent-dist": "yarn copy-builders-to-dist && yarn create-package-in-dist",
+        "copy-builders-to-dist": "cp builders.dist.json dist/builders.json",
+        "create-package-in-dist": "echo '{\"main\": \"index.js\", \"builders\": \"builders.json\"}' > dist/package.json",
+        "start": "tsc -p tsconfig.build.json --watch",
+        "start-test": "tsc -p tsconfig.test.json --watch",
+        "github-push": "yarn build && npm version patch && git push && git push --tags",
+        "npm-publish": "yarn build && npm publish --access public"
     },
     "builders": "builders.json",
     "dependencies": {
-        "lodash": "^4.17.10"
+        "karma": "^4.2.0"
     },
     "peerDependencies": {
-        "@angular-devkit/build-angular": ">=0.12.3"
+        "@angular-devkit/build-angular": ">=0.802.0"
     },
-    "devDependencies": {
-        "typescript": "^3.3.3333"
-    }
+    "devDependencies": {}
 }
