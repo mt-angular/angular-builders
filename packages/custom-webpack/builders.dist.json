@@ -15,11 +15,6 @@
             "class": "./karma",
             "schema": "./karma/schema.json",
             "description": "Karma server extended with custom webpack config"
-        },
-        "dev-server": {
-            "class": "./dev-server",
-            "schema": "./dev-server/schema.json",
-            "description": "Dev server extended with custom webpack config"
         }
     }
 }
