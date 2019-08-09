@@ -22,11 +22,11 @@
     "builders": "builders.json",
     "scripts": {
         "prebuild": "yarn clean && yarn generate",
-        "build": "../../node_modules/.bin/tsc",
+        "build": "npx tsc",
         "postbuild": "yarn copy",
-        "clean": "../../node_modules/.bin/rimraf dist src/schema.ts",
-        "copy": "../../node_modules/.bin/cpy src/schema.json dist",
-        "generate": "../../node_modules/.bin/quicktype -s schema src/schema.json -o src/schema.ts",
+        "clean": "shx rm -r dist src/schema.ts",
+        "copy": "shx cp src/schema.json dist",
+        "generate": "npx quicktype -s schema src/schema.json -o src/schema.ts",
         "start": "tsc -p tsconfig.build.json --watch",
         "start-test": "tsc -p tsconfig.test.json --watch"
     },

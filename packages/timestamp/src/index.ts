@@ -4,7 +4,7 @@ import { Observable, bindNodeCallback, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { getSystemPath, normalize, json } from '@angular-devkit/core';
 import { writeFile } from 'fs';
-import * as dateFormat from 'dateformat';
+import dateFormat from 'dateformat';
 
 export function createTimestamp(
     { path, format }: TimestampBuilderSchema,
@@ -15,9 +15,9 @@ export function createTimestamp(
     const timestampLogger = logger.createChild('Timestamp');
     return writeFileObservable(timestampFileName, dateFormat(new Date(), format)).pipe(
         map(() => ({ success: true })),
-        tap(() => timestampLogger.info("Timestamp created")),
+        tap(() => timestampLogger.info('Timestamp created')),
         catchError(e => {
-            timestampLogger.error("Failed to create timestamp", e);
+            timestampLogger.error('Failed to create timestamp', e);
             return of({ success: false });
         })
     );

@@ -28,7 +28,8 @@
         "dist"
     ],
     "scripts": {
-        "prebuild": "rm -R dist",
+        "clean": "shx rm -r dist",
+        "prebuild": "yarn clean",
         "postbuild2": "yarn copy-builders-to-dist && yarn test && yarn e2e",
         "postbuild": "yarn copy-assets-for-independent-dist && yarn test && yarn e2e",
         "build": "npx tsc -p tsconfig.build.json && yarn generate-schemes",
