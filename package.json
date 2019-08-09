@@ -5,7 +5,7 @@
     "workspaces": [
         "packages/*"
     ],
-    "description": "A consolidation of community builders for Angular build facade",
+    "description": "A consolidation of community builders for Angular build facade.",
     "repository": {
         "type": "git",
         "url": "https://github.com/milottit/angular-builders"
