@@ -1,6 +1,6 @@
 {
     "name": "@ud-angular-builders/jest-7",
-    "version": "7.6.1",
+    "version": "7.6.2",
     "description": "Jest builder for Angular build facade. Allows ng test run with Jest instead of Karma",
     "author": {
         "name": "Thomas Milotti",
