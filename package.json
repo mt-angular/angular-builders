@@ -29,7 +29,8 @@
         "test": "lerna run test --stream",
         "start": "lerna run --parallel start",
         "prepare": "rimraf mono-ui/build && rimraf mono-common/build && lerna run prepare",
-        "build": "npm run prepare && lerna run --parallel build"
+        "build": "npm run prepare && lerna run --parallel build",
+        "lerna-publish-npm": "lerna exec -- npm publish --access public"
     },
     "devDependencies": {
         "@angular-devkit/build-angular": "^0.802.0",
