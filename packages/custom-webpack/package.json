@@ -7,7 +7,7 @@
         "url": "https://github.com/milottit"
     },
     "repository": {
-        "url": "https://github.com/mt-angular/angular-builders/tree/8.0.0/packages/custom-webpack"
+        "url": "https://github.com/mt-angular/angular-builders/tree/angular8/packages/custom-webpack"
     },
     "license": "MIT",
     "description": "Custom webpack builders for Angular build facade. Allow to modify Angular build configuration without ejecting it",
