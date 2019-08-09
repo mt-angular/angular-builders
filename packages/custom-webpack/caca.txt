@@ -1,0 +1,608 @@
+[999D[K[0m[7m[1m[31m FAIL [39m[22m[27m[0m [2me2e/[22m[1mcustom-webpack-server-schema.spec.ts[22m
+[1m[31m  [1m● [1mcustom webpack server builder test › Should fit the schema of @angular-devkit/build-angular:server[39m[22m
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoEqual[2m([22m[32mexpected[39m[2m) // deep equality[22m
+
+    [32m- Expected[39m
+    [31m+ Received[39m
+
+    [33m@@ -1,70 +1,38 @@[39m
+    [2m  Object {[22m
+    [32m-   "aot": Object {[39m
+    [32m-     "default": false,[39m
+    [32m-     "description": "Build using Ahead of Time compilation.",[39m
+    [32m-     "type": "boolean",[39m
+    [32m-   },[39m
+    [32m-   "assets": Object {[39m
+    [32m-     "default": Array [],[39m
+    [32m-     "description": "List of static application assets.",[39m
+    [32m-     "items": Object {[39m
+    [32m-       "$ref": "#/definitions/assetPattern",[39m
+    [32m-     },[39m
+    [32m-     "type": "array",[39m
+    [32m-   },[39m
+    [32m-   "baseHref": Object {[39m
+    [32m-     "description": "Base url for the application being built.",[39m
+    [31m+   "bundleDependencies": Object {[39m
+    [31m+     "default": "none",[39m
+    [31m+     "description": "Available on server platform only. Which external dependencies to bundle into the module. By default, all of node_modules will be kept as requires.",[39m
+    [31m+     "enum": Array [[39m
+    [31m+       "none",[39m
+    [31m+       "all",[39m
+    [31m+     ],[39m
+    [2m      "type": "string",[22m
+    [2m    },[22m
+    [32m-   "budgets": Object {[39m
+    [32m-     "default": Array [],[39m
+    [32m-     "description": "Budget thresholds to ensure parts of your application stay within boundaries which you set.",[39m
+    [32m-     "items": Object {[39m
+    [32m-       "$ref": "#/definitions/budget",[39m
+    [32m-     },[39m
+    [32m-     "type": "array",[39m
+    [32m-   },[39m
+    [32m-   "buildOptimizer": Object {[39m
+    [32m-     "default": false,[39m
+    [32m-     "description": "Enables '@angular-devkit/build-optimizer' optimizations when using the 'aot' option.",[39m
+    [32m-     "type": "boolean",[39m
+    [32m-   },[39m
+    [2m    "commonChunk": Object {[22m
+    [2m      "default": true,[22m
+    [2m      "description": "Use a separate bundle containing code used across multiple bundles.",[22m
+    [2m      "type": "boolean",[22m
+    [2m    },[22m
+    [32m-   "customWebpackConfig": undefined,[39m
+    [2m    "deleteOutputPath": Object {[22m
+    [2m      "default": true,[22m
+    [2m      "description": "Delete the output path before building.",[22m
+    [2m      "type": "boolean",[22m
+    [2m    },[22m
+    [2m    "deployUrl": Object {[22m
+    [2m      "description": "URL where files will be deployed.",[22m
+    [2m      "type": "string",[22m
+    [32m-   },[39m
+    [32m-   "es5BrowserSupport": Object {[39m
+    [32m-     "default": false,[39m
+    [32m-     "description": "Enables conditionally loaded ES2015 polyfills.",[39m
+    [32m-     "type": "boolean",[39m
+    [2m    },[22m
+    [2m    "evalSourceMap": Object {[22m
+    [2m      "default": false,[22m
+    [2m      "description": "Output in-file eval sourcemaps.",[22m
+    [2m      "type": "boolean",[22m
+    [2m      "x-deprecated": true,[22m
+    [2m    },[22m
+    [32m-   "extractCss": Object {[39m
+    [32m-     "default": false,[39m
+    [32m-     "description": "Extract css from global styles into css files instead of js ones.",[39m
+    [32m-     "type": "boolean",[39m
+    [32m-   },[39m
+    [2m    "extractLicenses": Object {[22m
+    [32m-     "default": false,[39m
+    [32m-     "description": "Extract all licenses in a separate file.",[39m
+    [31m+     "default": true,[39m
+    [31m+     "description": "Extract all licenses in a separate file, in the case of production builds only.",[39m
+    [2m      "type": "boolean",[22m
+    [2m    },[22m
+    [2m    "fileReplacements": Object {[22m
+    [2m      "default": Array [],[22m
+    [2m      "description": "Replace files with other files in the build.",[22m
+    [33m@@ -90,14 +58,10 @@[39m
+    [2m      "description": "Locale to use for i18n.",[22m
+    [2m      "type": "string",[22m
+    [2m    },[22m
+    [2m    "i18nMissingTranslation": Object {[22m
+    [2m      "description": "How to handle missing translations for i18n.",[22m
+    [32m-     "type": "string",[39m
+    [32m-   },[39m
+    [32m-   "index": Object {[39m
+    [32m-     "description": "The name of the index HTML file.",[39m
+    [2m      "type": "string",[22m
+    [2m    },[22m
+    [2m    "lazyModules": Object {[22m
+    [2m      "default": Array [],[22m
+    [2m      "description": "List of additional NgModule files that will be lazy loaded. Lazy router modules will be discovered automatically.",[22m
+    [33m@@ -105,22 +69,17 @@[39m
+    [2m        "type": "string",[22m
+    [2m      },[22m
+    [2m      "type": "array",[22m
+    [2m    },[22m
+    [2m    "main": Object {[22m
+    [32m-     "$valueDescription": "fileName",[39m
+    [32m-     "description": "The full path for the main entry point to the app, relative to the current workspace.",[39m
+    [31m+     "description": "The name of the main entry-point file.",[39m
+    [2m      "type": "string",[22m
+    [2m    },[22m
+    [2m    "namedChunks": Object {[22m
+    [2m      "default": true,[22m
+    [2m      "description": "Use file name for lazy loaded chunks.",[22m
+    [2m      "type": "boolean",[22m
+    [32m-   },[39m
+    [32m-   "ngswConfigPath": Object {[39m
+    [32m-     "description": "Path to ngsw-config.json.",[39m
+    [32m-     "type": "string",[39m
+    [2m    },[22m
+    [2m    "optimization": Object {[22m
+    [2m      "description": "Enables optimization of the build output.",[22m
+    [2m      "oneOf": Array [[22m
+    [2m        Object {[22m
+    [33m@@ -154,66 +113,36 @@[39m
+    [2m        "bundles",[22m
+    [2m      ],[22m
+    [2m      "type": "string",[22m
+    [2m    },[22m
+    [2m    "outputPath": Object {[22m
+    [32m-     "description": "The full path for the new output directory, relative to the current workspace.[39m
+    [32m- [39m
+    [32m- By default, writes output to a folder named dist/ in the current project.",[39m
+    [31m+     "description": "Path where output will be placed.",[39m
+    [2m      "type": "string",[22m
+    [2m    },[22m
+    [2m    "poll": Object {[22m
+    [2m      "description": "Enable and define the file watching poll time period in milliseconds.",[22m
+    [2m      "type": "number",[22m
+    [32m-   },[39m
+    [32m-   "polyfills": Object {[39m
+    [32m-     "description": "The full path for the polyfills file, relative to the current workspace.",[39m
+    [32m-     "type": "string",[39m
+    [2m    },[22m
+    [2m    "preserveSymlinks": Object {[22m
+    [2m      "default": false,[22m
+    [2m      "description": "Do not use the real path when resolving modules.",[22m
+    [2m      "type": "boolean",[22m
+    [2m    },[22m
+    [32m-   "profile": Object {[39m
+    [32m-     "default": false,[39m
+    [32m-     "description": "Output profile events for Chrome profiler.",[39m
+    [32m-     "type": "boolean",[39m
+    [32m-   },[39m
+    [2m    "progress": Object {[22m
+    [2m      "description": "Log progress to the console while building.",[22m
+    [2m      "type": "boolean",[22m
+    [2m    },[22m
+    [2m    "resourcesOutputPath": Object {[22m
+    [2m      "default": "",[22m
+    [2m      "description": "The path where style resources will be placed, relative to outputPath.",[22m
+    [2m      "type": "string",[22m
+    [2m    },[22m
+    [32m-   "scripts": Object {[39m
+    [32m-     "default": Array [],[39m
+    [32m-     "description": "Global scripts to be included in the build.",[39m
+    [32m-     "items": Object {[39m
+    [32m-       "$ref": "#/definitions/extraEntryPoint",[39m
+    [32m-     },[39m
+    [32m-     "type": "array",[39m
+    [32m-   },[39m
+    [32m-   "serviceWorker": Object {[39m
+    [32m-     "default": false,[39m
+    [32m-     "description": "Generates a service worker config for production builds.",[39m
+    [32m-     "type": "boolean",[39m
+    [32m-   },[39m
+    [2m    "showCircularDependencies": Object {[22m
+    [2m      "default": true,[22m
+    [2m      "description": "Show circular dependency warnings on builds.",[22m
+    [2m      "type": "boolean",[22m
+    [2m    },[22m
+    [32m-   "skipAppShell": Object {[39m
+    [32m-     "default": false,[39m
+    [32m-     "description": "Flag to prevent building an app shell.",[39m
+    [32m-     "type": "boolean",[39m
+    [32m-     "x-deprecated": true,[39m
+    [32m-   },[39m
+    [2m    "sourceMap": Object {[22m
+    [2m      "default": true,[22m
+    [2m      "description": "Output sourcemaps.",[22m
+    [2m      "oneOf": Array [[22m
+    [2m        Object {[22m
+    [33m@@ -252,11 +181,11 @@[39m
+    [2m      "description": "Generates a 'stats.json' file which can be analyzed using tools such as 'webpack-bundle-analyzer'.",[22m
+    [2m      "type": "boolean",[22m
+    [2m    },[22m
+    [2m    "stylePreprocessorOptions": Object {[22m
+    [2m      "additionalProperties": false,[22m
+    [32m-     "description": "Options to pass to style preprocessors.",[39m
+    [31m+     "description": "Options to pass to style preprocessors",[39m
+    [2m      "properties": Object {[22m
+    [2m        "includePaths": Object {[22m
+    [2m          "default": Array [],[22m
+    [2m          "description": "Paths to include. Paths will be resolved to project root.",[22m
+    [2m          "items": Object {[22m
+    [33m@@ -265,25 +194,13 @@[39m
+    [2m          "type": "array",[22m
+    [2m        },[22m
+    [2m      },[22m
+    [2m      "type": "object",[22m
+    [2m    },[22m
+    [32m-   "styles": Object {[39m
+    [32m-     "default": Array [],[39m
+    [32m-     "description": "Global styles to be included in the build.",[39m
+    [32m-     "items": Object {[39m
+    [32m-       "$ref": "#/definitions/extraEntryPoint",[39m
+    [32m-     },[39m
+    [32m-     "type": "array",[39m
+    [32m-   },[39m
+    [32m-   "subresourceIntegrity": Object {[39m
+    [32m-     "default": false,[39m
+    [32m-     "description": "Enables the use of subresource integrity validation.",[39m
+    [32m-     "type": "boolean",[39m
+    [32m-   },[39m
+    [2m    "tsConfig": Object {[22m
+    [32m-     "description": "The full path for the TypeScript configuration file, relative to the current workspace.",[39m
+    [31m+     "default": "tsconfig.app.json",[39m
+    [31m+     "description": "The name of the TypeScript configuration file.",[39m
+    [2m      "type": "string",[22m
+    [2m    },[22m
+    [2m    "vendorChunk": Object {[22m
+    [2m      "default": true,[22m
+    [2m      "description": "Use a separate bundle containing only vendor libraries.",[22m
+[2m[22m
+[2m    [0m [90m 12 | [39m        [36mconst[39m originalBrowserSchema [33m=[39m require([32m'@angular-devkit/build-angular/src/server/schema.json'[39m)[33m;[39m[0m[22m
+[2m    [0m [90m 13 | [39m        customWebpackBrowserSchema[33m.[39mproperties[ [32m'customWebpackConfig'[39m ] [33m=[39m undefined[33m;[39m[0m[22m
+[2m    [0m[31m[1m>[2m[39m[90m 14 | [39m        expect(originalBrowserSchema[33m.[39mproperties)[33m.[39mtoEqual(customWebpackBrowserSchema[33m.[39mproperties)[33m;[39m[0m[22m
+[2m    [0m [90m    | [39m                                                 [31m[1m^[2m[39m[0m[22m
+[2m    [0m [90m 15 | [39m    })[33m;[39m[0m[22m
+[2m    [0m [90m 16 | [39m[0m[22m
+[2m    [0m [90m 17 | [39m    it([32m'Should contain customWebpackConfig'[39m[33m,[39m () [33m=>[39m {[0m[22m
+[2m[22m
+[2m      [2mat Object.<anonymous> ([2m[0m[36mpackages/custom-webpack/e2e/custom-webpack-server-schema.spec.ts[39m[0m[2m:14:50)[2m[22m
+
+[0m[7m[1m[31m FAIL [39m[22m[27m[0m [2me2e/[22m[1mcustom-webpack-karma-schema.spec.ts[22m
+[1m[31m  [1m● [1mcustom webpack karma builder test › Should fit the schema of @angular-devkit/build-angular:karma[39m[22m
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoEqual[2m([22m[32mexpected[39m[2m) // deep equality[22m
+
+    [32m- Expected[39m
+    [31m+ Received[39m
+
+    [33m@@ -1,231 +1,128 @@[39m
+    [2m  Object {[22m
+    [32m-   "aot": Object {[39m
+    [32m-     "default": false,[39m
+    [32m-     "description": "Build using Ahead of Time compilation.",[39m
+    [32m-     "type": "boolean",[39m
+    [32m-   },[39m
+    [2m    "assets": Object {[22m
+    [2m      "default": Array [],[22m
+    [2m      "description": "List of static application assets.",[22m
+    [2m      "items": Object {[22m
+    [2m        "$ref": "#/definitions/assetPattern",[22m
+    [2m      },[22m
+    [2m      "type": "array",[22m
+    [2m    },[22m
+    [32m-   "baseHref": Object {[39m
+    [32m-     "description": "Base url for the application being built.",[39m
+    [31m+   "browsers": Object {[39m
+    [31m+     "description": "Override which browsers tests are run against.",[39m
+    [2m      "type": "string",[22m
+    [2m    },[22m
+    [32m-   "budgets": Object {[39m
+    [32m-     "default": Array [],[39m
+    [32m-     "description": "Budget thresholds to ensure parts of your application stay within boundaries which you set.",[39m
+    [32m-     "items": Object {[39m
+    [32m-       "$ref": "#/definitions/budget",[39m
+    [32m-     },[39m
+    [32m-     "type": "array",[39m
+    [32m-   },[39m
+    [32m-   "buildOptimizer": Object {[39m
+    [31m+   "codeCoverage": Object {[39m
+    [2m      "default": false,[22m
+    [32m-     "description": "Enables '@angular-devkit/build-optimizer' optimizations when using the 'aot' option.",[39m
+    [31m+     "description": "Output a code coverage report.",[39m
+    [2m      "type": "boolean",[22m
+    [2m    },[22m
+    [32m-   "commonChunk": Object {[39m
+    [32m-     "default": true,[39m
+    [32m-     "description": "Use a separate bundle containing code used across multiple bundles.",[39m
+    [32m-     "type": "boolean",[39m
+    [31m+   "codeCoverageExclude": Object {[39m
+    [31m+     "default": Array [],[39m
+    [31m+     "description": "Globs to exclude from code coverage.",[39m
+    [31m+     "items": Object {[39m
+    [31m+       "type": "string",[39m
+    [36m      },[39m
+    [32m-   "customWebpackConfig": undefined,[39m
+    [32m-   "deleteOutputPath": Object {[39m
+    [32m-     "default": true,[39m
+    [32m-     "description": "Delete the output path before building.",[39m
+    [32m-     "type": "boolean",[39m
+    [31m+     "type": "array",[39m
+    [2m    },[22m
+    [32m-   "deployUrl": Object {[39m
+    [32m-     "description": "URL where files will be deployed.",[39m
+    [31m+   "environment": Object {[39m
+    [31m+     "description": "Defines the build environment.",[39m
+    [2m      "type": "string",[22m
+    [32m-   },[39m
+    [32m-   "es5BrowserSupport": Object {[39m
+    [32m-     "default": false,[39m
+    [32m-     "description": "Enables conditionally loaded ES2015 polyfills.",[39m
+    [32m-     "type": "boolean",[39m
+    [2m    },[22m
+    [2m    "evalSourceMap": Object {[22m
+    [32m-     "default": false,[39m
+    [2m      "description": "Output in-file eval sourcemaps.",[22m
+    [2m      "type": "boolean",[22m
+    [2m      "x-deprecated": true,[22m
+    [32m-   },[39m
+    [32m-   "extractCss": Object {[39m
+    [32m-     "default": false,[39m
+    [32m-     "description": "Extract css from global styles into css files instead of js ones.",[39m
+    [32m-     "type": "boolean",[39m
+    [2m    },[22m
+    [32m-   "extractLicenses": Object {[39m
+    [32m-     "default": false,[39m
+    [32m-     "description": "Extract all licenses in a separate file.",[39m
+    [32m-     "type": "boolean",[39m
+    [32m-   },[39m
+    [2m    "fileReplacements": Object {[22m
+    [2m      "default": Array [],[22m
+    [2m      "description": "Replace files with other files in the build.",[22m
+    [2m      "items": Object {[22m
+    [32m-       "$ref": "#/definitions/fileReplacement",[39m
+    [32m-     },[39m
+    [32m-     "type": "array",[39m
+    [32m-   },[39m
+    [32m-   "forkTypeChecker": Object {[39m
+    [32m-     "default": true,[39m
+    [32m-     "description": "Run the TypeScript type checker in a forked process.",[39m
+    [32m-     "type": "boolean",[39m
+    [32m-   },[39m
+    [32m-   "i18nFile": Object {[39m
+    [32m-     "description": "Localization file to use for i18n.",[39m
+    [32m-     "type": "string",[39m
+    [32m-   },[39m
+    [32m-   "i18nFormat": Object {[39m
+    [32m-     "description": "Format of the localization file specified with --i18n-file.",[39m
+    [32m-     "type": "string",[39m
+    [32m-   },[39m
+    [32m-   "i18nLocale": Object {[39m
+    [32m-     "description": "Locale to use for i18n.",[39m
+    [32m-     "type": "string",[39m
+    [32m-   },[39m
+    [32m-   "i18nMissingTranslation": Object {[39m
+    [32m-     "description": "How to handle missing translations for i18n.",[39m
+    [32m-     "type": "string",[39m
+    [32m-   },[39m
+    [32m-   "index": Object {[39m
+    [32m-     "description": "The name of the index HTML file.",[39m
+    [31m+       "oneOf": Array [[39m
+    [31m+         Object {[39m
+    [31m+           "additionalProperties": false,[39m
+    [31m+           "properties": Object {[39m
+    [31m+             "replaceWith": Object {[39m
+    [36m                "type": "string",[39m
+    [36m              },[39m
+    [32m-   "lazyModules": Object {[39m
+    [32m-     "default": Array [],[39m
+    [32m-     "description": "List of additional NgModule files that will be lazy loaded. Lazy router modules will be discovered automatically.",[39m
+    [32m-     "items": Object {[39m
+    [31m+             "src": Object {[39m
+    [36m                "type": "string",[39m
+    [32m-     },[39m
+    [32m-     "type": "array",[39m
+    [36m              },[39m
+    [32m-   "main": Object {[39m
+    [32m-     "$valueDescription": "fileName",[39m
+    [32m-     "description": "The full path for the main entry point to the app, relative to the current workspace.",[39m
+    [32m-     "type": "string",[39m
+    [36m            },[39m
+    [32m-   "namedChunks": Object {[39m
+    [32m-     "default": true,[39m
+    [32m-     "description": "Use file name for lazy loaded chunks.",[39m
+    [32m-     "type": "boolean",[39m
+    [31m+           "required": Array [[39m
+    [31m+             "src",[39m
+    [31m+             "replaceWith",[39m
+    [31m+           ],[39m
+    [31m+           "type": "object",[39m
+    [36m          },[39m
+    [32m-   "ngswConfigPath": Object {[39m
+    [32m-     "description": "Path to ngsw-config.json.",[39m
+    [32m-     "type": "string",[39m
+    [32m-   },[39m
+    [32m-   "optimization": Object {[39m
+    [32m-     "description": "Enables optimization of the build output.",[39m
+    [32m-     "oneOf": Array [[39m
+    [36m          Object {[39m
+    [36m            "additionalProperties": false,[39m
+    [36m            "properties": Object {[39m
+    [32m-           "scripts": Object {[39m
+    [32m-             "default": true,[39m
+    [32m-             "description": "Enables optimization of the scripts output.",[39m
+    [32m-             "type": "boolean",[39m
+    [31m+             "replace": Object {[39m
+    [31m+               "type": "string",[39m
+    [36m              },[39m
+    [32m-           "styles": Object {[39m
+    [32m-             "default": true,[39m
+    [32m-             "description": "Enables optimization of the styles output.",[39m
+    [32m-             "type": "boolean",[39m
+    [31m+             "with": Object {[39m
+    [31m+               "type": "string",[39m
+    [36m              },[39m
+    [36m            },[39m
+    [31m+           "required": Array [[39m
+    [31m+             "replace",[39m
+    [31m+             "with",[39m
+    [31m+           ],[39m
+    [36m            "type": "object",[39m
+    [32m-       },[39m
+    [32m-       Object {[39m
+    [32m-         "type": "boolean",[39m
+    [36m          },[39m
+    [36m        ],[39m
+    [36m      },[39m
+    [32m-   "outputHashing": Object {[39m
+    [32m-     "default": "none",[39m
+    [32m-     "description": "Define the output filename cache-busting hashing mode.",[39m
+    [32m-     "enum": Array [[39m
+    [32m-       "none",[39m
+    [32m-       "all",[39m
+    [32m-       "media",[39m
+    [32m-       "bundles",[39m
+    [32m-     ],[39m
+    [31m+     "type": "array",[39m
+    [31m+   },[39m
+    [31m+   "karmaConfig": Object {[39m
+    [31m+     "description": "The name of the Karma configuration file.",[39m
+    [2m      "type": "string",[22m
+    [2m    },[22m
+    [32m-   "outputPath": Object {[39m
+    [32m-     "description": "The full path for the new output directory, relative to the current workspace.[39m
+    [32m- [39m
+    [32m- By default, writes output to a folder named dist/ in the current project.",[39m
+    [31m+   "main": Object {[39m
+    [31m+     "description": "The name of the main entry-point file.",[39m
+    [2m      "type": "string",[22m
+    [2m    },[22m
+    [2m    "poll": Object {[22m
+    [2m      "description": "Enable and define the file watching poll time period in milliseconds.",[22m
+    [2m      "type": "number",[22m
+    [2m    },[22m
+    [2m    "polyfills": Object {[22m
+    [32m-     "description": "The full path for the polyfills file, relative to the current workspace.",[39m
+    [31m+     "description": "The name of the polyfills file.",[39m
+    [2m      "type": "string",[22m
+    [2m    },[22m
+    [2m    "preserveSymlinks": Object {[22m
+    [2m      "default": false,[22m
+    [2m      "description": "Do not use the real path when resolving modules.",[22m
+    [32m-     "type": "boolean",[39m
+    [32m-   },[39m
+    [32m-   "profile": Object {[39m
+    [32m-     "default": false,[39m
+    [32m-     "description": "Output profile events for Chrome profiler.",[39m
+    [2m      "type": "boolean",[22m
+    [2m    },[22m
+    [2m    "progress": Object {[22m
+    [2m      "description": "Log progress to the console while building.",[22m
+    [2m      "type": "boolean",[22m
+    [2m    },[22m
+    [32m-   "resourcesOutputPath": Object {[39m
+    [32m-     "default": "",[39m
+    [32m-     "description": "The path where style resources will be placed, relative to outputPath.",[39m
+    [31m+   "reporters": Object {[39m
+    [31m+     "description": "Karma reporters to use. Directly passed to the karma runner.",[39m
+    [31m+     "items": Object {[39m
+    [36m        "type": "string",[39m
+    [31m+     },[39m
+    [31m+     "type": "array",[39m
+    [2m    },[22m
+    [2m    "scripts": Object {[22m
+    [2m      "default": Array [],[22m
+    [2m      "description": "Global scripts to be included in the build.",[22m
+    [2m      "items": Object {[22m
+    [2m        "$ref": "#/definitions/extraEntryPoint",[22m
+    [2m      },[22m
+    [2m      "type": "array",[22m
+    [32m-   },[39m
+    [32m-   "serviceWorker": Object {[39m
+    [32m-     "default": false,[39m
+    [32m-     "description": "Generates a service worker config for production builds.",[39m
+    [32m-     "type": "boolean",[39m
+    [32m-   },[39m
+    [32m-   "showCircularDependencies": Object {[39m
+    [32m-     "default": true,[39m
+    [32m-     "description": "Show circular dependency warnings on builds.",[39m
+    [32m-     "type": "boolean",[39m
+    [32m-   },[39m
+    [32m-   "skipAppShell": Object {[39m
+    [32m-     "default": false,[39m
+    [32m-     "description": "Flag to prevent building an app shell.",[39m
+    [32m-     "type": "boolean",[39m
+    [32m-     "x-deprecated": true,[39m
+    [2m    },[22m
+    [2m    "sourceMap": Object {[22m
+    [2m      "default": true,[22m
+    [2m      "description": "Output sourcemaps.",[22m
+    [2m      "oneOf": Array [[22m
+    [2m        Object {[22m
+    [2m          "additionalProperties": false,[22m
+    [2m          "properties": Object {[22m
+    [32m-           "hidden": Object {[39m
+    [32m-             "default": false,[39m
+    [32m-             "description": "Output sourcemaps used for error reporting tools.",[39m
+    [32m-             "type": "boolean",[39m
+    [32m-           },[39m
+    [2m            "scripts": Object {[22m
+    [2m              "default": true,[22m
+    [2m              "description": "Output sourcemaps for all scripts.",[22m
+    [2m              "type": "boolean",[22m
+    [2m            },[22m
+    [33m@@ -245,18 +142,13 @@[39m
+    [2m        Object {[22m
+    [2m          "type": "boolean",[22m
+    [2m        },[22m
+    [2m      ],[22m
+    [2m    },[22m
+    [32m-   "statsJson": Object {[39m
+    [32m-     "default": false,[39m
+    [32m-     "description": "Generates a 'stats.json' file which can be analyzed using tools such as 'webpack-bundle-analyzer'.",[39m
+    [32m-     "type": "boolean",[39m
+    [32m-   },[39m
+    [2m    "stylePreprocessorOptions": Object {[22m
+    [2m      "additionalProperties": false,[22m
+    [32m-     "description": "Options to pass to style preprocessors.",[39m
+    [31m+     "description": "Options to pass to style preprocessors",[39m
+    [2m      "properties": Object {[22m
+    [2m        "includePaths": Object {[22m
+    [2m          "default": Array [],[22m
+    [2m          "description": "Paths to include. Paths will be resolved to project root.",[22m
+    [2m          "items": Object {[22m
+    [33m@@ -272,37 +164,21 @@[39m
+    [2m      "description": "Global styles to be included in the build.",[22m
+    [2m      "items": Object {[22m
+    [2m        "$ref": "#/definitions/extraEntryPoint",[22m
+    [2m      },[22m
+    [2m      "type": "array",[22m
+    [32m-   },[39m
+    [32m-   "subresourceIntegrity": Object {[39m
+    [32m-     "default": false,[39m
+    [32m-     "description": "Enables the use of subresource integrity validation.",[39m
+    [32m-     "type": "boolean",[39m
+    [2m    },[22m
+    [2m    "tsConfig": Object {[22m
+    [32m-     "description": "The full path for the TypeScript configuration file, relative to the current workspace.",[39m
+    [31m+     "description": "The name of the TypeScript configuration file.",[39m
+    [2m      "type": "string",[22m
+    [32m-   },[39m
+    [32m-   "vendorChunk": Object {[39m
+    [32m-     "default": true,[39m
+    [32m-     "description": "Use a separate bundle containing only vendor libraries.",[39m
+    [32m-     "type": "boolean",[39m
+    [2m    },[22m
+    [2m    "vendorSourceMap": Object {[22m
+    [2m      "default": false,[22m
+    [2m      "description": "Resolve vendor packages sourcemaps.",[22m
+    [2m      "type": "boolean",[22m
+    [2m      "x-deprecated": true,[22m
+    [32m-   },[39m
+    [32m-   "verbose": Object {[39m
+    [32m-     "default": false,[39m
+    [32m-     "description": "Adds more details to output logging.",[39m
+    [32m-     "type": "boolean",[39m
+    [2m    },[22m
+    [2m    "watch": Object {[22m
+    [32m-     "default": false,[39m
+    [2m      "description": "Run build when files change.",[22m
+    [2m      "type": "boolean",[22m
+    [2m    },[22m
+    [2m  }[22m
+[2m[22m
+[2m    [0m [90m 13 | [39m        [36mconst[39m originalBrowserSchema [33m=[39m require([32m'@angular-devkit/build-angular/src/karma/schema.json'[39m)[33m;[39m[0m[22m
+[2m    [0m [90m 14 | [39m        customWebpackBrowserSchema[33m.[39mproperties[ [32m'customWebpackConfig'[39m ] [33m=[39m undefined[33m;[39m[0m[22m
+[2m    [0m[31m[1m>[2m[39m[90m 15 | [39m        expect(originalBrowserSchema[33m.[39mproperties)[33m.[39mtoEqual(customWebpackBrowserSchema[33m.[39mproperties)[33m;[39m[0m[22m
+[2m    [0m [90m    | [39m                                                 [31m[1m^[2m[39m[0m[22m
+[2m    [0m [90m 16 | [39m    })[33m;[39m[0m[22m
+[2m    [0m [90m 17 | [39m[0m[22m
+[2m    [0m [90m 18 | [39m    it([32m'Should contain customWebpackConfig'[39m[33m,[39m () [33m=>[39m {[0m[22m
+[2m[22m
+[2m      [2mat Object.<anonymous> ([2m[0m[36mpackages/custom-webpack/e2e/custom-webpack-karma-schema.spec.ts[39m[0m[2m:15:50)[2m[22m
+
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2me2e/[22m[1mcustom-webpack-browser-schema.spec.ts[22m
+[999D[K
+[1mTest Suites: [22m[1m[31m2 failed[39m[22m, [1m[32m1 passed[39m[22m, 3 total
+[1mTests:       [22m[1m[31m2 failed[39m[22m, [1m[32m4 passed[39m[22m, 6 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        0.7s, estimated 1s
+[2mRan all test suites[22m[2m.[22m
+[2K[1G[31merror[39m Command failed with exit code 1.

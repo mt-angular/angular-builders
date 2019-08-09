@@ -1,11 +1,11 @@
-import { customWebpackConfig } from "./custom-webpack-config-schema";
+import { customWebpackConfig } from './custom-webpack-config-schema';
 
 describe('custom webpack server builder test', () => {
-    let customWebpackBrowserSchema: any;
+    let customWebpackBrowserSchema: any = undefined;
 
     beforeEach(() => {
         jest.resetModules();
-        customWebpackBrowserSchema = require('../src/server/schema.json');
+        customWebpackBrowserSchema = require('../dist/server/schema.json');
     });
 
     it('Should fit the schema of @angular-devkit/build-angular:server', () => {

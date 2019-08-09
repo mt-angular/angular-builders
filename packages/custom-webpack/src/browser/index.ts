@@ -7,8 +7,9 @@ import { BuilderContext } from '@angular-devkit/architect';
 import { BrowserBuilder } from '@angular-devkit/build-angular';
 import { Path, virtualFs } from '@angular-devkit/core';
 import * as fs from 'fs';
-import { CustomWebpackBuilder, NormalizedCustomWebpackBrowserBuildSchema } from '../custom-webpack-builder';
+import { CustomWebpackBuilder } from '../custom-webpack-builder';
 import { Configuration } from 'webpack';
+import { NormalizedCustomWebpackBrowserBuildSchema } from '../custom-webpack-schema';
 
 
 export class CustomWebpackBrowserBuilder extends BrowserBuilder {

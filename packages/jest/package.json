@@ -30,7 +30,7 @@
         "postbuild": "yarn test",
         "build": "npx tsc -p tsconfig.build.json",
         "test": "npx jest --config ../../jest-ut.config.js",
-        "e2e": "npx jest --config ../../jest-e2e.config.js",
+        "e2e": "npx jest --passWithNoTests --config ../../jest-e2e.config.js",
         "start": "tsc -p tsconfig.build.json --watch"
     },
     "peerDependencies": {

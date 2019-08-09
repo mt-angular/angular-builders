@@ -7,8 +7,9 @@ import { BuilderContext } from '@angular-devkit/architect';
 import { ServerBuilder } from '@angular-devkit/build-angular';
 import { Path, virtualFs } from '@angular-devkit/core';
 import * as fs from 'fs';
-import { CustomWebpackBuilder, NormalizedCustomWebpackServerBuildSchema } from '../custom-webpack-builder';
+import { CustomWebpackBuilder } from '../custom-webpack-builder';
 import { Configuration } from 'webpack';
+import { NormalizedCustomWebpackServerBuildSchema } from '../custom-webpack-schema';
 
 export class CustomWebpackServerBuilder extends ServerBuilder {
     constructor(private builderContext: BuilderContext) {
