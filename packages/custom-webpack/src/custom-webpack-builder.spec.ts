@@ -85,7 +85,7 @@ describe('CustomWebpackBuilder test', () => {
 
     it('Should pass on merge strategies', () => {
         const fileName = defaultWebpackConfigPath;
-        const mergeStrategies: MergeStrategies = { 'blah': 'prepend' };
+        const mergeStrategies: MergeStrategies = { blah: 'prepend' };
         Object.assign(param.options.customWebpackConfig, { path: fileName, mergeStrategies });
 
         CustomWebpackBuilder.buildWebpackConfig(param, baseWebpackConfig);

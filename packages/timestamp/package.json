@@ -9,23 +9,10 @@
         "build": "npx tsc -p tsconfig.build.json",
         "start": "tsc -p tsconfig.build.json --watch"
     },
-    "devDependencies": {
-        "@angular/common": "8.2.0",
-        "@angular/core": "^8.2.0",
-        "@angular/platform-browser": "8.2.0",
-        "@types/dateformat": "^3.0.0",
-        "rxjs": "^6.5.2"
-    },
     "peerDependencies": {
-        "@angular-devkit/build-angular": ">=0.12.3"
+        "@angular-devkit/build-angular": ">=0.13.2"
     },
     "dependencies": {
-        "@angular/cli": "^8.2.0",
-        "@angular/core": "^8.2.0",
-        "@angular/platform-browser-dynamic": ">=2.0.0",
-        "core-js": ">=2.0.0 < 4.0.0",
-        "dateformat": "^3.0.3",
-        "rxjs": "^6.4.0",
-        "zone.js": "~0.9.1"
+        "lodash": "^4.17.10"
     }
 }

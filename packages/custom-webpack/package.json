@@ -39,9 +39,6 @@
         "lodash": "^4.17.10"
     },
     "peerDependencies": {
-        "@angular-devkit/build-angular": "^0.13.3"
-    },
-    "devDependencies": {
-        "typescript": "^3.3.3333"
+        "@angular-devkit/build-angular": ">=0.13.2"
     }
 }

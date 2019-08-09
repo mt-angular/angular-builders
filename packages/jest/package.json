@@ -26,24 +26,10 @@
         "e2e": "npx jest --config ../../jest-e2e.config.js",
         "start": "tsc -p tsconfig.build.json --watch"
     },
-    "dependencies": {
-        "@angular/cli": "^8.2.0",
-        "@angular/core": "^8.2.0",
-        "@angular/platform-browser-dynamic": ">=2.0.0",
-        "core-js": ">=2.0.0 < 4.0.0",
-        "jest-preset-angular": "^7.1.1",
-        "lodash": "^4.17.10",
-        "rxjs": "^6.4.0",
-        "zone.js": "~0.9.1"
-    },
     "peerDependencies": {
-        "@angular-devkit/build-angular": ">=0.12.3",
-        "jest": ">= 23"
+        "@angular-devkit/build-angular": ">=0.13.2"
     },
-    "devDependencies": {
-        "@angular/common": "8.2.0",
-        "@angular/core": "^8.2.0",
-        "@angular/platform-browser": "8.2.0",
-        "rxjs": "^6.5.2"
+    "dependencies": {
+        "lodash": "^4.17.10"
     }
 }
