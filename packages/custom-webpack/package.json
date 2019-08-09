@@ -1,6 +1,6 @@
 {
     "name": "@ud-angular-builders/custom-webpack-7",
-    "version": "7.6.1",
+    "version": "7.6.2",
     "description": "Custom webpack builders for Angular build facade. Allow to modify Angular build configuration without ejecting it",
     "main": "dist/index.js",
     "author": {
