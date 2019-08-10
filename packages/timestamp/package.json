@@ -21,12 +21,12 @@
     },
     "builders": "builders.json",
     "scripts": {
+        "clean": "shx rm -r dist src/schema.ts || true",
         "prebuild": "yarn clean && yarn generate",
-        "build": "../../node_modules/.bin/tsc",
         "postbuild": "yarn copy",
-        "clean": "../../node_modules/.bin/rimraf dist src/schema.ts",
-        "copy": "../../node_modules/.bin/cpy src/schema.json dist",
-        "generate": "../../node_modules/.bin/quicktype -s schema src/schema.json -o src/schema.ts",
+        "build": "npx tsc -p tsconfig.build.json",
+        "copy": "shx cp src/schema.json dist",
+        "generate": "npx quicktype -s schema src/schema.json -o src/schema.ts",
         "start": "tsc -p tsconfig.build.json --watch",
         "start-test": "tsc -p tsconfig.test.json --watch"
     },
