@@ -1,6 +1,6 @@
 {
     "name": "@ud-angular-builders/custom-webpack",
-    "version": "8.0.4",
+    "version": "8.0.5",
     "author": {
         "name": "Thomas Milotti",
         "email": "thomas.milotti@gmail.com",
@@ -47,6 +47,5 @@
     },
     "peerDependencies": {
         "@angular-devkit/build-angular": ">=0.802.0"
-    },
-    "devDependencies": {}
+    }
 }
