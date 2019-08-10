@@ -3,16 +3,13 @@
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
-            "@mt-angular-builders/custom-webpack/*": [
+            "@ud-angular-builders/custom-webpack/*": [
                 "./packages/custom-webpack/src"
             ],
-            "@mt-angular-builders/jest/*": [
+            "@ud-angular-builders/jest/*": [
                 "./packages/jest/src"
             ],
-            "@mt-angular-builders/dev-server/*": [
-                "./packages/dev-server/src"
-            ],
-            "@mt-angular-builders/timestamp/*": [
+            "@ud-angular-builders/timestamp/*": [
                 "./packages/timestamp/src"
             ],
         }

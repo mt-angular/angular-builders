@@ -19,7 +19,7 @@ export function customWebpackConfigTransformFactory(options: CustomWebpackBuildS
 
 export function indexHtmlTransformFactory(options: CustomWebpackBuildSchema, context: BuilderContext): IndexHtmlTransform {
 
-    // indexhtml-transform.js path
+    // index-html-transform.js path
     const indexHtmlOuput = options.indexTransform;
     if (!indexHtmlOuput) return null;
 
@@ -27,12 +27,21 @@ export function indexHtmlTransformFactory(options: CustomWebpackBuildSchema, con
 
 
     const transform = getIndexTransform(normalize(workspaceRoot), indexHtmlOuput);
-    return async (indexHtml: string) => transform(target, indexHtml);
-
+    return async (indexHtml: string) => transform(
+        indexHtml,
+        {
+            ...context, workspaceRoot: normalize(context.workspaceRoot)
+        },
+        options);
+    // target, indexHtml);
 }
 
 
-function getIndexTransform(root: string, indexTransformPath: string): (target: Target, indexHtml: string) => string {
+interface IndexTransform {
+    (indexHtml: string, builderContext: BuilderContext, buildOptions: CustomWebpackBuildSchema): string;
+}
+
+function getIndexTransform(root: string, indexTransformPath: string): IndexTransform {
     return require(`${getSystemPath(root as Path)}/${indexTransformPath}`);
 }
 

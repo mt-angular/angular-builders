@@ -20,7 +20,7 @@
         "node": ">=8.9"
     },
     "scripts": {
-        "postbuild": "npm test && npm run e2e",
+        "postbuild": "yarn test && yarn run e2e",
         "build2": "tsc && ts-node merge-schemes.ts",
         "test2": "jest src",
         "e2e": "lerna run e2e --stream",
@@ -29,8 +29,7 @@
         "test": "lerna run test --stream",
         "start": "lerna run --parallel start",
         "prepare": "rimraf mono-ui/build && rimraf mono-common/build && lerna run prepare",
-        "build": "npm run prepare && lerna run --parallel build",
-        "lerna-publish-npm": "lerna exec -- npm publish --access public"
+        "build": "yarn run prepare && lerna run --parallel build"
     },
     "devDependencies": {
         "@angular-devkit/build-angular": "^0.802.0",

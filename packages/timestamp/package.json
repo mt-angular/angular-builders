@@ -1,6 +1,6 @@
 {
     "name": "@ud-angular-builders/timestamp",
-    "version": "8.1.3",
+    "version": "8.0.5",
     "repository": {
         "type": "git",
         "url": "https://github.com/milottit/angular-builders/tree/angular8/packages/timestamp"
@@ -21,10 +21,10 @@
     },
     "builders": "builders.json",
     "scripts": {
+        "clean": "shx rm -r dist src/schema.ts || true",
         "prebuild": "yarn clean && yarn generate",
-        "build": "npx tsc",
         "postbuild": "yarn copy",
-        "clean": "shx rm -r dist src/schema.ts",
+        "build": "npx tsc -p tsconfig.build.json",
         "copy": "shx cp src/schema.json dist",
         "generate": "npx quicktype -s schema src/schema.json -o src/schema.ts",
         "start": "tsc -p tsconfig.build.json --watch",

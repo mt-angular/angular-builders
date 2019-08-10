@@ -1,6 +1,6 @@
 {
     "name": "@ud-angular-builders/jest",
-    "version": "8.1.3",
+    "version": "8.0.5",
     "description": "Jest runner for Angular build facade. Allows ng test run with Jest instead of Karma",
     "repository": {
         "type": "git",
@@ -31,19 +31,29 @@
     ],
     "builders": "builders.json",
     "scripts": {
+        "clean": "shx rm -r dist src/schema.ts || true",
         "prebuild": "yarn clean && yarn generate",
-        "build": "npx tsc",
         "postbuild": "yarn copy && yarn test && yarn e2e",
-        "test": "npx  jest --config ../../jest-ut.config.js",
-        "e2e": "npx  jest --passWithNoTests --config ../../jest-e2e.config.js",
-        "clean": "shx rm -r dist src/schema.ts",
+        "build": "npx tsc -p tsconfig.build.json",
+        "test": "npx jest --config ../../jest-ut.config.js",
+        "e2e": "npx jest --passWithNoTests --config ../../jest-e2e.config.js",
+        "start": "tsc -p tsconfig.build.json --watch",
         "copy": "shx cp src/schema.json dist",
         "generate": "npx quicktype -s schema src/schema.json -o src/schema.ts",
         "ci": "./scripts/ci.sh",
-        "start": "tsc -p tsconfig.build.json --watch",
         "start-test": "tsc -p tsconfig.test.json --watch"
     },
     "dependencies": {
+        "@angular-devkit/build-angular": "^0.802.0",
+        "@angular-devkit/core": "^8.2.0",
+        "@angular/common": "^8.2.0",
+        "@angular/compiler": "^8.2.0",
+        "@angular/compiler-cli": "^8.2.0",
+        "@angular/core": "^8.2.0",
+        "@angular/platform-browser": "^8.2.0",
+        "@types/jest": "^24.0.9",
+        "@types/node": "^12.6.9",
+        "@upradata/browser-util": "^1.0.8",
         "jest-preset-angular": "^7.1.1",
         "lodash": "^4.17.10"
     },
