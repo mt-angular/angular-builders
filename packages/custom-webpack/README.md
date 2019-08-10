@@ -3,6 +3,13 @@
 
 
 Fork from [angular-builders](https://github.com/just-jeb/angular-builders/tree/master/packages/custom-webpack) but with enhancement.
+
+Angular 7 or 8 does not allow you to transform the wepback configuration throw options. However, Angular has @angular-devkit allowing
+powerful stuff including tweaking into Angular building process.
+
+@ud-angular-builders/custom-webpack is an Angular Builder allowing to transform Angular Webpack configuration. It also allows to transform
+the output index.html
+
 The webpack configuration is being passed with angular builder context, angular build options and the angular webpack configuration.
 It can be useful to write customized webpack confiugration and webpack plugins.
 
