@@ -14,5 +14,5 @@ package
 *.js
 *.js.map
 
-# my stuff
+## my stuff
 **/dist
