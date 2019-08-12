@@ -21,8 +21,6 @@
     },
     "scripts": {
         "postbuild": "yarn test && yarn run e2e",
-        "build2": "tsc && ts-node merge-schemes.ts",
-        "test2": "jest src",
         "e2e": "lerna run e2e --stream",
         "clean": "lerna clean",
         "bootstrap": "lerna bootstrap",
