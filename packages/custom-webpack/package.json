@@ -25,12 +25,14 @@
         "custom"
     ],
     "files": [
-        "dist"
+        "dist",
+        "builders.json"
     ],
     "scripts": {
         "clean": "shx rm -r dist || true",
         "prebuild": "yarn clean",
-        "postbuild": "yarn copy-builders-to-dist && yarn test && yarn e2e",
+        "postbuild2": "yarn copy-builders-to-dist && yarn test && yarn e2e",
+        "postbuild": "yarn test && yarn e2e",
         "build": "npx tsc -p tsconfig.build.json && yarn generate-schemes",
         "generate-schemes": "npx ts-node ../../merge-schemes.ts",
         "test": "yarn generate-schemes && npx jest --verbose false --config ../../jest-ut.config.js",
