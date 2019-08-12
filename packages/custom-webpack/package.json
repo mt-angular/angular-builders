@@ -47,5 +47,8 @@
     },
     "peerDependencies": {
         "@angular-devkit/build-angular": ">=0.802.0"
+    },
+    "publishConfig": {
+        "access": "public"
     }
 }

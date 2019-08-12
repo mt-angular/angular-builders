@@ -18,7 +18,7 @@ the basic angular webpack configuration.
 
 Allow customizing build configuration without ejecting webpack configuration (`ng eject`)
 
-# This documentation is for version 8 only. Find documentation for version 7 [here](https://github.com/mt-angular/angular-builders/tree/angular8/packages/custom-webpack/README.md).
+# This documentation is for version 8 only. Find documentation for version 7 [here](https://github.com/mt-angular/angular-builders/tree/angular7/packages/custom-webpack/README.md).
 
 # Prerequisites:
  - [Angular CLI 8](https://www.npmjs.com/package/@angular/cli)
@@ -164,6 +164,69 @@ Builder options:
 
 In this example `module.rules` entry from `extra-webpack.config.js` will be prepended to `module.rules` entry from Angular CLI underlying webpack config while all the rest will be appended. 
 Since loaders are evaluated [from right to left](https://webpack.js.org/concepts/loaders/#configuration) this will effectively mean that the loaders you define in your custom configuration will be applied **after** the loaders defined by Angular CLI.
+
+
+You can check a full example [here](https://github.com/mt-angular/angular-builders/tree/angular8/packages/custom-webpack/examples/full-cycle-app/angular.json)
+
+
+Now, you can write the webpack configuration in `./extra-webpack.config.js`:
+
+```js
+const path = require('path');
+const { AddAssetIndexPlugin } = require('@up-angular-builders/custom-webpack');
+
+module.exports = buildParameters => {
+    // the properties of buildParameters are
+    // const { builderContext, buildOptions, baseWebpackConfig } = buildParamters;
+
+    const configuration = {
+        module: {
+             rules: [
+                {
+                    test: /\.css$/,
+                    loader: 'css-loader',
+                    options: {
+                        name: `[name][hash].[ext]`,
+                    },
+                 }
+            ],
+        },
+        plugins: [
+            new webpack.DefinePlugin({
+              ENVIRONMENT: JSON.stringify('browser')
+            }),
+            new webpack.NormalModuleReplacementPlugin(/(.*)\$environment\$(\.*)/, function (resource) {
+              resource.request = resource.request.replace(/\$environment\$/, 'browser');
+            }),
+
+            new AddAssetIndexPlugin([
+                {
+                    filepath: 'src/font/**/*.woff2',
+                    attributes: {
+                        as: 'font',
+                        rel: 'preload'
+                    },
+                    // deployUrl: 'public/deploy',
+                    hash: true,
+                    place: 'head',
+                    sri: true,
+                    outputDir: filepath => {
+                        const split = filepath.split('src/font/');
+                        const newpath = path.join('assets/bust-cached-font', split[1]);
+
+                        return path.dirname(newpath);
+                    }
+                }
+            ], builderParameters)
+        ]
+    };
+
+    // ovveride allows to merge or override the Angular webpack configuration
+    // return configration directly is the same as the following.
+    return { configuration, ovveride: false };
+};
+```
+
 
 ## Custom webpack Karma
 
