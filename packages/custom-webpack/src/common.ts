@@ -5,7 +5,7 @@ import { normalize, getSystemPath, Path } from '@angular-devkit/core';
 import { Configuration } from 'webpack';
 import { CustomWebpackBuilder } from './custom-webpack-builder';
 import { IndexHtmlTransform } from '@angular-devkit/build-angular/src/angular-cli-files/utilities/index-file/write-index-html';
-import { CustomWebpackBuildSchema } from './custom-webpack-schema';
+import { CustomWebpackBuildSchema, IndexTransform } from './custom-webpack-schema';
 
 
 
@@ -17,6 +17,8 @@ export function customWebpackConfigTransformFactory(options: CustomWebpackBuildS
     );
 }
 
+
+
 export function indexHtmlTransformFactory(options: CustomWebpackBuildSchema, context: BuilderContext): IndexHtmlTransform {
 
     // index-html-transform.js path
@@ -25,8 +27,14 @@ export function indexHtmlTransformFactory(options: CustomWebpackBuildSchema, con
 
     const { workspaceRoot, target } = context;
 
+    let transform: IndexTransform = undefined;
 
-    const transform = getIndexTransform(normalize(workspaceRoot), indexHtmlOuput);
+    if (typeof indexHtmlOuput === 'string')
+        transform = getIndexTransform(normalize(workspaceRoot), indexHtmlOuput);
+    else
+        transform = indexHtmlOuput;
+
+
     return async (indexHtml: string) => transform(
         indexHtml,
         {
@@ -37,9 +45,6 @@ export function indexHtmlTransformFactory(options: CustomWebpackBuildSchema, con
 }
 
 
-interface IndexTransform {
-    (indexHtml: string, builderContext: BuilderContext, buildOptions: CustomWebpackBuildSchema): string;
-}
 
 function getIndexTransform(root: string, indexTransformPath: string): IndexTransform {
     return require(`${getSystemPath(root as Path)}/${indexTransformPath}`);
