@@ -1,0 +1,20 @@
+import { customWebpackConfig } from './custom-webpack-config-schema';
+
+describe('custom webpack server builder test', () => {
+    let customWebpackBrowserSchema: any;
+
+    beforeEach(() => {
+        jest.resetModules();
+        customWebpackBrowserSchema = require('../dist/dev-server/schema.json');
+    });
+
+    it('Should fit the schema of @angular-devkit/build-angular:dev-server', () => {
+        const originalBrowserSchema = require('@angular-devkit/build-angular/src/dev-server/schema.json');
+        customWebpackBrowserSchema.properties[ 'customWebpackConfig' ] = undefined;
+        expect(originalBrowserSchema.properties).toEqual(customWebpackBrowserSchema.properties);
+    });
+
+    it('Should contain customWebpackConfig', () => {
+        expect(customWebpackBrowserSchema.properties.customWebpackConfig).toEqual(customWebpackConfig);
+    });
+});
