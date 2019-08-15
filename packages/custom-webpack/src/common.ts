@@ -27,21 +27,31 @@ export function indexHtmlTransformFactory(options: CustomWebpackBuildSchema, con
 
     const { workspaceRoot, target } = context;
 
-    let transform: IndexTransform = undefined;
+    let transforms: IndexTransform[] = undefined;
 
     if (typeof indexHtmlOuput === 'string')
-        transform = getIndexTransform(normalize(workspaceRoot), indexHtmlOuput);
-    else
-        transform = indexHtmlOuput;
+        transforms = [ getIndexTransform(normalize(workspaceRoot), indexHtmlOuput) ];
+    else {
+        transforms = Array.isArray(indexHtmlOuput) ? indexHtmlOuput : [ indexHtmlOuput ];
+    }
 
 
-    return async (indexHtml: string) => transform(
-        indexHtml,
-        {
-            ...context, workspaceRoot: normalize(context.workspaceRoot)
-        },
-        options);
-    // target, indexHtml);
+    return async (indexHtml: string) => {
+        let indexHtmlTransform = indexHtml;
+
+        for (const transform of transforms) {
+            indexHtmlTransform = await transform(
+                indexHtmlTransform,
+                {
+                    ...context, workspaceRoot: normalize(context.workspaceRoot)
+                },
+                options);
+            // target, indexHtml);
+        }
+
+        return indexHtmlTransform;
+    };
+
 }
 
 

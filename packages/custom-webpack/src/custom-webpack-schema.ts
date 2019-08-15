@@ -4,14 +4,14 @@ import { BuilderContext } from '@angular-devkit/architect';
 
 export type IndexTransformFile = string;
 export interface IndexTransform {
-    (indexHtml: string, builderContext: BuilderContext, buildOptions: CustomWebpackBuildSchema): string;
+    (indexHtml: string, builderContext: BuilderContext, buildOptions: CustomWebpackBuildSchema): string | Promise<string>;
 }
 
 
 export interface CustomWebpackSchema {
     customWebpackConfig: CustomWebpackBuilderConfig;
     // index transform filename exporting IndexHtmlTransform or directly a IndexHtmlTransform
-    indexTransform?: IndexTransformFile | IndexTransform;
+    indexTransform?: IndexTransformFile | IndexTransform | IndexTransform[];
 }
 
 
