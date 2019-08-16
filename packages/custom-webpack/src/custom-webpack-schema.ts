@@ -1,6 +1,7 @@
 import { CustomWebpackBuilderConfig } from './custom-webpack-builder-config';
 import { BrowserBuilderOptions, KarmaBuilderOptions, ServerBuilderOptions, DevServerBuilderOptions } from '@angular-devkit/build-angular';
 import { BuilderContext } from '@angular-devkit/architect';
+import { Transforms } from './transforms';
 
 export type IndexTransformFile = string;
 export interface IndexTransformFunction {
@@ -12,6 +13,7 @@ export interface CustomWebpackSchema {
     customWebpackConfig: CustomWebpackBuilderConfig;
     // index transform filename exporting IndexHtmlTransform or directly a IndexHtmlTransform
     indexTransform?: IndexTransform | IndexTransform[];
+    indexTransforms?: Transforms;
 }
 
 

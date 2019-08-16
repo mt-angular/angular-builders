@@ -6,6 +6,7 @@ import { Configuration } from 'webpack';
 import { CustomWebpackBuilder } from './custom-webpack-builder';
 import { IndexHtmlTransform } from '@angular-devkit/build-angular/src/angular-cli-files/utilities/index-file/write-index-html';
 import { CustomWebpackBuildSchema, IndexTransform, IndexTransformFunction } from './custom-webpack-schema';
+import { Transforms } from './transforms';
 
 
 
@@ -64,8 +65,10 @@ function getIndexTransform(root: string, indexTransformPath: string): IndexTrans
 
 
 export function getTransforms(options: CustomWebpackBuildSchema, context: BuilderContext) {
+    const transforms = new Transforms(options, context);
+
     return {
-        webpackConfiguration: customWebpackConfigTransformFactory(options, context),
-        indexHtml: indexHtmlTransformFactory(options, context)
+        webpackConfiguration: transforms.webpackConfiguration.bind(transforms), // customWebpackConfigTransformFactory(options, context),
+        indexHtml: transforms.indexHtml.bind(transforms), // indexHtmlTransformFactory(options, context)
     };
 }
