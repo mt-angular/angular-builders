@@ -3,15 +3,15 @@ import { BrowserBuilderOptions, KarmaBuilderOptions, ServerBuilderOptions, DevSe
 import { BuilderContext } from '@angular-devkit/architect';
 
 export type IndexTransformFile = string;
-export interface IndexTransform {
+export interface IndexTransformFunction {
     (indexHtml: string, builderContext: BuilderContext, buildOptions: CustomWebpackBuildSchema): string | Promise<string>;
 }
-
+export type IndexTransform = IndexTransformFile | IndexTransformFunction;
 
 export interface CustomWebpackSchema {
     customWebpackConfig: CustomWebpackBuilderConfig;
     // index transform filename exporting IndexHtmlTransform or directly a IndexHtmlTransform
-    indexTransform?: IndexTransformFile | IndexTransform | IndexTransform[];
+    indexTransform?: IndexTransform | IndexTransform[];
 }
 
 
