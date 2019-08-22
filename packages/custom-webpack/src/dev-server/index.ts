@@ -26,13 +26,15 @@ export const serveCustomWebpackBrowser = (options: DevServerBuilderOptions, cont
         // In dev server we should not have budgets because of extra libs such as socks-js
         opt.budgets = undefined;
 
+        /* 
+        NOT WORKING
         const browserName = await context.getBuilderNameForTarget(browserTarget);
         const browserOptions = await context.validateOptions<json.JsonObject & CustomWebpackDevServerSchema>(
             { ...rawBrowserOptions, ...opt },
             browserName,
-        );
+        ); */
 
-        return browserOptions;
+        return { ...rawBrowserOptions, ...opt }; // browserOptions;
 
     }
 
