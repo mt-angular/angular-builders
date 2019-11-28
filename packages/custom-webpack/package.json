@@ -1,57 +1,63 @@
 {
-    "name": "@ud-angular-builders/custom-webpack",
-    "version": "8.0.18",
-    "author": {
-        "name": "Thomas Milotti",
-        "email": "thomas.milotti@gmail.com",
-        "url": "https://github.com/milottit"
-    },
-    "repository": {
-        "url": "https://github.com/mt-angular/angular-builders/tree/angular8/packages/custom-webpack"
-    },
-    "license": "MIT",
-    "description": "Custom webpack builders for Angular build facade. Allow to modify Angular build configuration without ejecting it",
-    "main": "dist/index.js",
-    "engines": {
-        "node": ">=8.9"
-    },
-    "keywords": [
-        "cli",
-        "angular",
-        "builder",
-        "angular",
-        "angular-cli",
-        "webpack",
-        "custom"
-    ],
-    "files": [
-        "dist",
-        "builders.json"
-    ],
-    "scripts": {
-        "clean": "shx rm -r dist || true",
-        "prebuild": "yarn clean",
-        "postbuild2": "yarn copy-builders-to-dist && yarn test && yarn e2e",
-        "postbuild": "yarn test && yarn e2e",
-        "build": "npx tsc -p tsconfig.build.json && yarn generate-schemes",
-        "generate-schemes": "npx ts-node ../../merge-schemes.ts",
-        "test": "yarn generate-schemes && npx jest --verbose false --config ../../jest-ut.config.js",
-        "e2e": "npx jest --passWithNoTests --verbose false --config ../../jest-e2e.config.js",
-        "copy-builders-to-dist": "cp builders.dist.json dist/builders.json",
-        "start": "tsc -p tsconfig.build.json --watch",
-        "start-test": "tsc -p tsconfig.test.json --watch",
-        "github-push": "yarn build && npm version patch && git push && git push --tags",
-        "npm-publish": "yarn build && npm publish --access public"
-    },
-    "builders": "builders.json",
-    "dependencies": {
-        "karma": "^4.2.0"
-    },
-    "peerDependencies": {
-        "@angular-devkit/build-angular": ">=0.802.0"
-    },
-    "publishConfig": {
-        "access": "public"
-    },
-    "gitHead": "ac1591d181708924f7160ab173385234792be5aa"
+	"name": "@ud-angular-builders/custom-webpack",
+	"version": "8.0.19",
+	"author": {
+		"name": "Thomas Milotti",
+		"email": "thomas.milotti@gmail.com",
+		"url": "https://github.com/milottit"
+	},
+	"repository": {
+		"url": "https://github.com/mt-angular/angular-builders/tree/angular8/packages/custom-webpack"
+	},
+	"license": "MIT",
+	"description": "Custom webpack builders for Angular build facade. Allow to modify Angular build configuration without ejecting it",
+	"main": "dist/index.js",
+	"engines": {
+		"node": ">=8.9"
+	},
+	"keywords": [
+		"cli",
+		"angular",
+		"builder",
+		"angular",
+		"angular-cli",
+		"webpack",
+		"custom"
+	],
+	"files": [
+		"dist",
+		"builders.json"
+	],
+	"scripts": {
+		"clean": "shx rm -r dist || true",
+		"prebuild": "yarn clean",
+		"postbuild2": "yarn copy-builders-to-dist && yarn test && yarn e2e",
+		"postbuild": "yarn test && yarn e2e",
+		"build": "npx tsc -p tsconfig.build.json && yarn generate-schemes",
+		"generate-schemes": "npx ts-node ../../merge-schemes.ts",
+		"test": "yarn generate-schemes && npx jest --verbose false --config ../../jest-ut.config.js",
+		"e2e": "npx jest --passWithNoTests --verbose false --config ../../jest-e2e.config.js",
+		"copy-builders-to-dist": "cp builders.dist.json dist/builders.json",
+		"start": "tsc -p tsconfig.build.json --watch",
+		"start-test": "tsc -p tsconfig.test.json --watch",
+		"github-push": "yarn build && npm version patch && git push && git push --tags",
+		"npm-publish": "yarn build && npm publish --access public"
+	},
+	"builders": "builders.json",
+	"dependencies": {
+		"karma": "^4.2.0"
+	},
+	"peerDependencies": {
+		"@angular-devkit/build-angular": ">=0.802.0"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"gitHead": "ac1591d181708924f7160ab173385234792be5aa",
+	"local": {
+		"usedBy": {
+			"html-index-webpack-extended": "/home/milottit/Libraries/WebpackAngular/IndexHtmlPlugin/IndexHtmlPluginAngularTest",
+			"ifa": "/home/milottit/Projects/IFA"
+		}
+	}
 }

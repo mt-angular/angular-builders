@@ -3,18 +3,18 @@ import { Configuration } from 'webpack';
 import { getSystemPath, Path } from '@angular-devkit/core';
 import { mergeConfigs } from './webpack-config-merger';
 import { BuilderContext } from '@angular-devkit/architect';
-import { CustomWebpackBuildSchema } from './custom-webpack-schema';
+import { CustomWebpackBuildSchema, CustomWebpackBrowserSchema } from './custom-webpack-schema';
 
 
 
-export interface BuilderParameters {
+export interface BuilderParameters<BuildOptions extends CustomWebpackBuildSchema = CustomWebpackBrowserSchema> {
     builderContext: BuilderContext;
-    buildOptions: CustomWebpackBuildSchema;
+    buildOptions: BuildOptions;
     baseWebpackConfig: Configuration;
 }
 
 export type ReturnWebpackConfiguration = { configuration: Configuration; override?: boolean };
-export type FunctionWebpackConfiguration = (BuilderParameters: BuilderParameters) => Configuration | ReturnWebpackConfiguration;
+export type FunctionWebpackConfiguration = <BuildOptions extends CustomWebpackBuildSchema>(BuilderParameters: BuilderParameters<BuildOptions>) => Configuration | ReturnWebpackConfiguration;
 export type WebpackConfiguration = Configuration | FunctionWebpackConfiguration;
 
 

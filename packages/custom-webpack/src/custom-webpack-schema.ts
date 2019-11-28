@@ -25,5 +25,4 @@ export type CustomWebpackServerSchema = ServerBuilderOptions & CustomWebpackSche
 export type CustomWebpackDevServerSchema = DevServerBuilderOptions & CustomWebpackSchema;
 
 
-
 export type CustomWebpackBuildSchema = CustomWebpackBrowserSchema | CustomWebpackServerSchema | CustomWebpackKarmaBuildSchema | CustomWebpackDevServerSchema;

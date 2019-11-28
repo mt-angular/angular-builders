@@ -1,12 +1,12 @@
 import { CustomWebpackBuildSchema, IndexTransform, CustomWebpackBuilder, IndexTransformFunction } from '.';
 import { BuilderContext } from '@angular-devkit/architect';
-import { normalize } from 'path';
+import { normalize, join } from 'path';
 import { Configuration } from 'webpack';
 import { getSystemPath, Path } from '@angular-devkit/core';
 
-
 function getIndexTransform(root: string, indexTransformPath: string): IndexTransformFunction {
-    return require(`${getSystemPath(root as Path)}/${indexTransformPath}`);
+    const content = require(join(getSystemPath(root as Path), indexTransformPath));
+    return (indexHtml: string, builderContext: BuilderContext, buildOptions: CustomWebpackBuildSchema) => content;
 }
 
 export class Transforms {
@@ -41,7 +41,7 @@ export class Transforms {
         const transformFunc = this.getTransformFunc(transform);
         const oldIndexHtml = this._indexHtml;
 
-        this._indexHtml = async function (indexHtmlContent: string) {
+        this._indexHtml = async  (indexHtmlContent: string) => {
             const content = await oldIndexHtml(indexHtmlContent);
             return transformFunc(content, this.context, this.options);
         };
